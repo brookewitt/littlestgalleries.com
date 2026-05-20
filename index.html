@@ -446,7 +446,73 @@
     }
     .faq-item.open .faq-a { max-height: 400px; padding-bottom: 28px; }
 
-    /* ── CONTACT ── */
+    /* ── CONTACT FORM ── */
+    .contact-form-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      padding: 48px;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.65);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 3px;
+      padding: 14px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: white;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .form-group select option { background: #2a2420; color: white; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+      background: var(--rust);
+      color: white;
+      border: none;
+      padding: 18px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      width: 100%;
+      margin-top: 8px;
+    }
+    .form-submit:hover { background: var(--rust-light); transform: translateY(-1px); }
+    .form-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      font-weight: 300;
+    }
+    .form-note a { color: var(--gold); text-decoration: none; }
+    @media (max-width: 900px) {
+      .contact-form-wrap { padding: 32px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
     #contact { background: var(--ink); color: white; text-align: center; padding: 120px 0; }
     #contact .section-title { color: white; }
     #contact .section-body { color: rgba(255,255,255,0.55); margin: 0 auto 48px; }
@@ -776,14 +842,56 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
-    <span class="section-eyebrow" style="color:var(--gold)">Get in Touch</span>
+    <span class="section-eyebrow" style="color:var(--gold)">Commission a Piece</span>
     <h2 class="section-title fade-in">Ready to create <em>something beautiful?</em></h2>
     <div class="divider"></div>
-    <p class="section-body fade-in">I'd love to hear about your child's artwork and help you create a piece your family will treasure for generations. Drop me a message to get started.</p>
-    <br/><br/>
-    <a class="contact-email" href="mailto:hello@littlestgalleries.com">hello@littlestgalleries.com</a>
-    <br/><br/>
-    <div class="social-links">
+    <p class="section-body fade-in" style="margin:0 auto 56px;">Fill in the form below to tell me about your little artist — I'll get back to you as soon as possible.</p>
+
+    <div class="contact-form-wrap fade-in">
+      <form action="https://formspree.io/f/brooke@littlestgalleries.com" method="POST" class="contact-form">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstname">First name *</label>
+            <input type="text" id="firstname" name="firstname" required placeholder="Your first name" />
+          </div>
+          <div class="form-group">
+            <label for="lastname">Last name *</label>
+            <input type="text" id="lastname" name="lastname" required placeholder="Your last name" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required placeholder="your@email.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="size">Which size are you interested in?</label>
+          <select id="size" name="size">
+            <option value="" disabled selected>Select a size</option>
+            <option value="18x18 Framed (£446)">18×18 inches — Framed £446</option>
+            <option value="18x18 Unframed (£265)">18×18 inches — Unframed £265</option>
+            <option value="24x30 Framed (£600)">24×30 inches — Framed £600</option>
+            <option value="24x30 Unframed (£355)">24×30 inches — Unframed £355</option>
+            <option value="30x40 Framed (£785)">30×40 inches — Framed £785</option>
+            <option value="30x40 Unframed (£470)">30×40 inches — Unframed £470</option>
+            <option value="Custom / Not sure yet">Custom size / Not sure yet</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Tell me more about your little artist</label>
+          <textarea id="message" name="message" rows="4" placeholder="Their name, age, what kind of artwork they make, any special occasion..."></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Send Request</button>
+
+        <p class="form-note">I aim to respond within 24–48 hours. You can also reach me at <a href="mailto:brooke@littlestgalleries.com">brooke@littlestgalleries.com</a></p>
+      </form>
+    </div>
+
+    <div class="social-links" style="margin-top:64px;">
       <a class="social-link" href="https://www.instagram.com/littlestgalleries" target="_blank" rel="noopener">Instagram</a>
       <a class="social-link" href="https://www.tiktok.com/@littlestgalleries" target="_blank" rel="noopener">TikTok</a>
     </div>
