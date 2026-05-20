@@ -299,24 +299,14 @@
       overflow: hidden;
       cursor: pointer;
     }
-    .gallery-card-inner {
+    .gallery-card img {
       width: 100%;
-      height: 100%;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      height: calc(100% - 40px);
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
     }
-    .gc1 { background: linear-gradient(160deg, #fce4d6, #fbe8c8); }
-    .gc2 { background: linear-gradient(160deg, #d6eaf8, #dff0e8); }
-    .gc3 { background: linear-gradient(160deg, #f0e0f8, #fce4d6); }
-    .gc-patch { border-radius: 2px; flex: 1; }
-    .gc1 .gc-patch:nth-child(1) { background: rgba(244,165,138,0.7); }
-    .gc1 .gc-patch:nth-child(2) { background: rgba(247,208,138,0.7); flex: 0.6; }
-    .gc2 .gc-patch:nth-child(1) { background: rgba(168,196,232,0.7); }
-    .gc2 .gc-patch:nth-child(2) { background: rgba(168,213,162,0.7); flex: 0.8; }
-    .gc3 .gc-patch:nth-child(1) { background: rgba(213,168,232,0.7); flex: 0.7; }
-    .gc3 .gc-patch:nth-child(2) { background: rgba(244,165,138,0.7); }
+    .gallery-card:hover img { transform: scale(1.03); }
     .gallery-label {
       padding: 12px 0 0;
       font-size: 12px;
@@ -568,14 +558,7 @@
   </div>
   <div class="hero-right fade-in">
     <div class="hero-art">
-      <div class="hero-art-inner">
-        <div class="art-piece"></div>
-        <div class="art-piece"></div>
-        <div class="art-piece"></div>
-        <div class="art-piece">
-          <span class="art-handwriting">Lily, age 4</span>
-        </div>
-      </div>
+      <img src="Raya South London.jpg" alt="Child standing in front of her bespoke Littlest Galleries framed artwork" style="width:100%;height:100%;object-fit:cover;display:block;" />
       <div class="frame-badge">Gallery Framed</div>
     </div>
   </div>
@@ -622,25 +605,28 @@
 
     <div class="gallery-grid">
       <div class="gallery-card fade-in">
-        <div class="gallery-card-inner gc1">
-          <div class="gc-patch"></div>
-          <div class="gc-patch"></div>
-        </div>
-        <p class="gallery-label">A4 Framed · Mixed media</p>
+        <img src="IMG_8389.jpg" alt="Large bespoke children's art collage framed in light oak" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        <p class="gallery-label">30×40 · Mixed media collage</p>
       </div>
       <div class="gallery-card fade-in">
-        <div class="gallery-card-inner gc2">
-          <div class="gc-patch"></div>
-          <div class="gc-patch"></div>
-        </div>
-        <p class="gallery-label">A3 Framed · Watercolour &amp; drawings</p>
+        <img src="Athena Bayswater.jpg" alt="Bespoke children's artwork collage framed" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        <p class="gallery-label">18×18 · Drawings &amp; paintings</p>
       </div>
       <div class="gallery-card fade-in">
-        <div class="gallery-card-inner gc3">
-          <div class="gc-patch"></div>
-          <div class="gc-patch"></div>
-        </div>
-        <p class="gallery-label">Large · Handprints &amp; handwriting</p>
+        <img src="IMG_1265.jpg" alt="Bespoke children's art collage in light oak frame on wall" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        <p class="gallery-label">24×30 · Handprints &amp; handwriting</p>
+      </div>
+      <div class="gallery-card fade-in">
+        <img src="IMG_6851.jpg" alt="Colourful children's artwork collage framed" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        <p class="gallery-label">24×30 · Mixed media</p>
+      </div>
+      <div class="gallery-card fade-in">
+        <img src="IMG_7825.jpg" alt="Bespoke children's art collage commission" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        <p class="gallery-label">18×18 · Drawings &amp; colour</p>
+      </div>
+      <div class="gallery-card fade-in">
+        <img src="IMG_9774.jpg" alt="Littlest Galleries piece displayed outdoors" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        <p class="gallery-label">30×40 · Large commission</p>
       </div>
     </div>
   </div>
