@@ -446,6 +446,35 @@
     }
     .faq-item.open .faq-a { max-height: 400px; padding-bottom: 28px; }
 
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-image {
+      position: relative;
+    }
+    .about-image img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+      border: 12px solid white;
+      box-shadow: 16px 16px 48px rgba(28,24,18,0.12);
+      outline: 1px solid var(--border);
+    }
+    .about-body {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.8;
+    }
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
     /* ── CONTACT FORM ── */
     .contact-form-wrap {
       max-width: 680px;
@@ -592,6 +621,7 @@
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact" class="nav-cta">Commission a Piece</a></li>
@@ -838,6 +868,23 @@
       <div class="faq-item fade-in">
         <div class="faq-q">Can I commission a piece using artwork from more than one child?</div>
         <div class="faq-a">Absolutely — sibling collages are some of my favourites. I can blend artwork from two or more children into one piece, making it an even more special family heirloom.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image fade-in">
+        <img src="evgembliuk_photographerw2-17%20(1).JPG" alt="Brooke — founder of Littlest Galleries" />
+      </div>
+      <div class="about-content fade-in">
+        <span class="section-eyebrow">About Me</span>
+        <h2 class="section-title">The person <em>behind the piece</em></h2>
+        <div class="divider"></div>
+        <p class="about-body">I'm Brooke — an American mum of two living in London, with a lifelong love of making things. Littlest Galleries was born from a simple belief: that children's art deserves more than a drawer. Every piece I create is a hand-made collage of your child's own drawings, paintings and handprints — transformed into something gallery-worthy that your family will treasure for a lifetime.</p>
       </div>
     </div>
   </div>
