@@ -569,6 +569,79 @@
     }
     .social-link:hover { color: white; }
 
+    /* ── INSTAGRAM POPUP ── */
+    .ig-popup {
+      display: none;
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 500;
+      background: var(--ink);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      padding: 24px;
+      max-width: 300px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+      flex-direction: column;
+      gap: 16px;
+      animation: igSlideIn 0.5s ease forwards;
+    }
+    @keyframes igSlideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes igSlideOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(20px); }
+    }
+    .ig-close {
+      position: absolute;
+      top: 12px; right: 14px;
+      background: none; border: none;
+      color: rgba(255,255,255,0.4);
+      font-size: 16px;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .ig-close:hover { color: white; }
+    .ig-popup-inner { display: flex; flex-direction: column; gap: 12px; }
+    .ig-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ig-popup-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: white;
+    }
+    .ig-popup-sub {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+    .ig-popup-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: white;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 12px 20px;
+      border-radius: 2px;
+      text-align: center;
+      transition: opacity 0.2s;
+    }
+    .ig-popup-btn:hover { opacity: 0.85; }
+    @media (max-width: 900px) {
+      .ig-popup { bottom: 16px; right: 16px; left: 16px; max-width: none; }
+    }
+
     /* ── FOOTER ── */
     footer {
       background: #0e0d0b;
@@ -953,6 +1026,25 @@
   <p>© 2026 Littlest Galleries · All rights reserved · littlestgalleries.com</p>
 </footer>
 
+<!-- INSTAGRAM POPUP -->
+<div class="ig-popup" id="igPopup">
+  <button class="ig-close" onclick="closeIgPopup()" aria-label="Close">✕</button>
+  <div class="ig-popup-inner">
+    <div class="ig-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="1.5"/>
+        <circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="1.5"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="white"/>
+      </svg>
+    </div>
+    <div class="ig-popup-text">
+      <p class="ig-popup-title">Follow along</p>
+      <p class="ig-popup-sub">See every piece as it's made — behind the scenes, new commissions, and the stories behind the art.</p>
+    </div>
+    <a href="https://www.instagram.com/thelittlestgalleries" target="_blank" rel="noopener" class="ig-popup-btn" onclick="closeIgPopup()">@thelittlestgalleries</a>
+  </div>
+</div>
+
 <script>
   // Fade in on scroll
   const observer = new IntersectionObserver((entries) => {
@@ -969,6 +1061,21 @@
       if (!isOpen) item.classList.add('open');
     });
   });
+
+  // Instagram popup — show after 4 seconds, only once per session
+  function closeIgPopup() {
+    const popup = document.getElementById('igPopup');
+    popup.style.animation = 'igSlideOut 0.4s ease forwards';
+    setTimeout(() => popup.style.display = 'none', 400);
+    sessionStorage.setItem('igPopupSeen', '1');
+  }
+
+  if (!sessionStorage.getItem('igPopupSeen')) {
+    setTimeout(() => {
+      const popup = document.getElementById('igPopup');
+      popup.style.display = 'flex';
+    }, 4000);
+  }
 </script>
 
 </body>
