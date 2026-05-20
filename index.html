@@ -1,1 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Littlest Galleries | Bespoke Children's Artwork Collages | UK</title>
+  <meta name="description" content="Littlest Galleries transforms your child's drawings, paintings and handprints into stunning, professionally framed collage art. Bespoke commissions across the UK. The perfect keepsake gift." />
+  <meta name="keywords" content="children's art collage, bespoke kids artwork frame, framed children's drawings UK, turn child's art into wall art, kids artwork gift, personalised children's art, bespoke children's collage commission" />
+  <meta property="og:title" content="Littlest Galleries | Bespoke Children's Artwork Collages" />
+  <meta property="og:description" content="Your child's art, professionally collaged and gallery-framed. A keepsake they'll treasure forever." />
+  <meta property="og:url" content="https://www.littlestgalleries.com" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://www.littlestgalleries.com/" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f7f3ee;
+      --warm: #f0ebe2;
+      --ink: #1c1812;
+      --rust: #b84c2a;
+      --rust-light: #d4652f;
+      --sage: #6b7c5e;
+      --gold: #c9993a;
+      --mid: #8a7e72;
+      --border: rgba(28,24,18,0.12);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      background: rgba(247,243,238,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--rust); }
+    .nav-cta {
+      background: var(--rust);
+      color: white !important;
+      padding: 10px 22px;
+      border-radius: 2px;
+      font-size: 12px !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.12em !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--rust-light) !important; color: white !important; }
+
+    /* hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; border: none; background: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--ink); transition: 0.3s; }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--cream); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 40px; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--ink); text-decoration: none; }
+    .mobile-close { position: absolute; top: 24px; right: 28px; font-size: 28px; background: none; border: none; cursor: pointer; color: var(--ink); }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px 80px 80px;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 28px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(44px, 5vw, 72px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--rust);
+    }
+    .hero-subtitle {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--mid);
+      max-width: 420px;
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block;
+      background: var(--rust);
+      color: white;
+      padding: 16px 36px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--rust-light); transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-block;
+      border: 1px solid var(--border);
+      color: var(--ink);
+      padding: 16px 36px;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--rust); color: var(--rust); }
+
+    .hero-right {
+      background: var(--warm);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-art {
+      width: 80%;
+      max-width: 460px;
+      aspect-ratio: 3/4;
+      background: white;
+      box-shadow: 24px 24px 60px rgba(28,24,18,0.15);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 16px solid white;
+      outline: 1px solid var(--border);
+    }
+    .hero-art-inner {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #fce4d6 0%, #fef0e0 25%, #e8f0e0 50%, #d6eaf8 75%, #f0d6f8 100%);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      gap: 8px;
+      padding: 16px;
+    }
+    .art-piece { border-radius: 2px; opacity: 0.85; }
+    .art-piece:nth-child(1) { background: #f4a58a; grid-column: 1/2; grid-row: 1/2; }
+    .art-piece:nth-child(2) { background: #a8d5a2; grid-column: 2/3; grid-row: 1/3; }
+    .art-piece:nth-child(3) { background: #f7d08a; grid-column: 1/2; grid-row: 2/3; }
+    .art-piece:nth-child(4) { background: #a8c4e8; grid-column: 1/3; grid-row: 3/4; display: flex; align-items: center; justify-content: center; }
+    .art-handwriting {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 22px;
+      color: rgba(28,24,18,0.5);
+      transform: rotate(-3deg);
+    }
+    .frame-badge {
+      position: absolute;
+      bottom: -16px;
+      right: -16px;
+      background: var(--rust);
+      color: white;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 100px 0; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+    .section-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 54px);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    .section-title em { font-style: italic; color: var(--rust); }
+    .section-body {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--mid);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--rust);
+      margin: 32px 0;
+    }
+
+    /* ── HOW IT WORKS ── */
+    #how-it-works { background: var(--warm); }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      margin-top: 64px;
+    }
+    .step { position: relative; }
+    .step-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 64px;
+      font-weight: 300;
+      color: rgba(28,24,18,0.08);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+    .step-body { font-size: 15px; color: var(--mid); font-weight: 300; line-height: 1.7; }
+    .step-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    /* ── GALLERY ── */
+    #gallery .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 64px;
+    }
+    .gallery-card {
+      background: var(--warm);
+      aspect-ratio: 3/4;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .gallery-card-inner {
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .gc1 { background: linear-gradient(160deg, #fce4d6, #fbe8c8); }
+    .gc2 { background: linear-gradient(160deg, #d6eaf8, #dff0e8); }
+    .gc3 { background: linear-gradient(160deg, #f0e0f8, #fce4d6); }
+    .gc-patch { border-radius: 2px; flex: 1; }
+    .gc1 .gc-patch:nth-child(1) { background: rgba(244,165,138,0.7); }
+    .gc1 .gc-patch:nth-child(2) { background: rgba(247,208,138,0.7); flex: 0.6; }
+    .gc2 .gc-patch:nth-child(1) { background: rgba(168,196,232,0.7); }
+    .gc2 .gc-patch:nth-child(2) { background: rgba(168,213,162,0.7); flex: 0.8; }
+    .gc3 .gc-patch:nth-child(1) { background: rgba(213,168,232,0.7); flex: 0.7; }
+    .gc3 .gc-patch:nth-child(2) { background: rgba(244,165,138,0.7); }
+    .gallery-label {
+      padding: 12px 0 0;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    /* ── PRICING ── */
+    #pricing { background: var(--warm); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 64px;
+    }
+    .price-card {
+      background: var(--cream);
+      padding: 40px 36px;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+    .price-card.featured {
+      background: var(--ink);
+      color: white;
+      border-color: var(--ink);
+    }
+    .price-card.featured .section-eyebrow { color: var(--gold); }
+    .price-card.featured .price-desc { color: rgba(255,255,255,0.55); }
+    .price-card.featured .price-line { color: rgba(255,255,255,0.2); }
+    .price-card.featured .price-features li { color: rgba(255,255,255,0.75); }
+    .price-card.featured .price-features li::before { color: var(--gold); }
+    .price-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--rust);
+      color: white;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+    }
+    .price-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .price-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 300;
+      line-height: 1;
+      margin: 20px 0 8px;
+    }
+    .price-amount sup { font-size: 24px; vertical-align: super; }
+    .price-desc { font-size: 13px; color: var(--mid); margin-bottom: 28px; font-weight: 300; }
+    .price-line { height: 1px; background: var(--border); margin-bottom: 28px; }
+    .price-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+    .price-features li { font-size: 14px; color: var(--mid); font-weight: 300; padding-left: 20px; position: relative; }
+    .price-features li::before { content: '✓'; position: absolute; left: 0; color: var(--sage); font-size: 12px; top: 1px; }
+    .btn-card {
+      display: block;
+      text-align: center;
+      padding: 14px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: 0.2s;
+    }
+    .btn-card-dark { background: var(--ink); color: white; }
+    .btn-card-dark:hover { background: #2e2820; }
+    .btn-card-light { background: white; color: var(--ink); }
+    .btn-card-light:hover { background: var(--cream); }
+
+    /* ── TESTIMONIALS ── */
+    #reviews .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 64px;
+    }
+    .review-card {
+      background: var(--warm);
+      padding: 36px;
+      border-left: 3px solid var(--rust);
+    }
+    .review-stars { color: var(--gold); font-size: 13px; letter-spacing: 2px; margin-bottom: 16px; }
+    .review-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: var(--ink);
+    }
+    .review-author { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
+
+    /* ── FAQ ── */
+    #faq { background: var(--warm); }
+    .faq-list { margin-top: 64px; max-width: 760px; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      padding: 28px 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      user-select: none;
+    }
+    .faq-q::after {
+      content: '+';
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--rust);
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+    .faq-item.open .faq-q::after { transform: rotate(45deg); }
+    .faq-a {
+      font-size: 16px;
+      color: var(--mid);
+      font-weight: 300;
+      line-height: 1.75;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+    }
+    .faq-item.open .faq-a { max-height: 400px; padding-bottom: 28px; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--ink); color: white; text-align: center; padding: 120px 0; }
+    #contact .section-title { color: white; }
+    #contact .section-body { color: rgba(255,255,255,0.55); margin: 0 auto 48px; }
+    #contact .divider { background: var(--gold); margin: 32px auto; }
+    .contact-email {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      margin-bottom: 48px;
+      transition: opacity 0.2s;
+    }
+    .contact-email:hover { opacity: 0.75; }
+    .social-links { display: flex; gap: 24px; justify-content: center; }
+    .social-link {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .social-link:hover { color: white; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0e0d0b;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      padding: 28px;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── FADE IN ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      #home { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 60px 24px 48px; }
+      .hero-right { min-height: 380px; padding: 40px 24px; }
+      .hero-art { max-width: 280px; }
+
+      .container { padding: 0 24px; }
+      section { padding: 72px 0; }
+
+      .steps-grid,
+      .pricing-grid,
+      .gallery-grid,
+      #gallery .gallery-grid,
+      .reviews-grid,
+      #reviews .reviews-grid { grid-template-columns: 1fr; gap: 28px; }
+
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#home">Littlest Galleries</a>
+  <ul class="nav-links">
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact" class="nav-cta">Commission a Piece</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu">
+  <button class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('open')">✕</button>
+  <a href="#home" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Home</a>
+  <a href="#how-it-works" onclick="document.querySelector('.mobile-menu').classList.remove('open')">How It Works</a>
+  <a href="#gallery" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Gallery</a>
+  <a href="#pricing" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Pricing</a>
+  <a href="#reviews" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Reviews</a>
+  <a href="#contact" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Commission a Piece</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-left fade-in">
+    <p class="hero-eyebrow">Bespoke Children's Artwork · UK</p>
+    <h1 class="hero-title">Your child's art, <em>gallery-worthy</em> forever</h1>
+    <p class="hero-subtitle">We take your little one's drawings, paintings, handprints and handwriting and transform them into a stunning, professionally framed collage — a keepsake they'll treasure for life.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">Commission a Piece</a>
+      <a href="#how-it-works" class="btn-ghost">How It Works</a>
+    </div>
+  </div>
+  <div class="hero-right fade-in">
+    <div class="hero-art">
+      <div class="hero-art-inner">
+        <div class="art-piece"></div>
+        <div class="art-piece"></div>
+        <div class="art-piece"></div>
+        <div class="art-piece">
+          <span class="art-handwriting">Lily, age 4</span>
+        </div>
+      </div>
+      <div class="frame-badge">Gallery Framed</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+  <div class="container">
+    <span class="section-eyebrow fade-in">The Process</span>
+    <h2 class="section-title fade-in">Simple, <em>personal,</em> beautiful</h2>
+    <p class="section-body fade-in">Every piece is made by hand, with care. Here's how it works — from your child's scribbles to a finished artwork you'll hang with pride.</p>
+    <div class="divider fade-in"></div>
+
+    <div class="steps-grid">
+      <div class="step fade-in">
+        <div class="step-number">01</div>
+        <div class="step-icon">📦</div>
+        <h3 class="step-title">You send me the artwork</h3>
+        <p class="step-body">Post your child's originals to me — drawings, paintings, handprints, handwriting, whatever they've made. I'll handle everything with care and return the originals.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-number">02</div>
+        <div class="step-icon">✂️</div>
+        <h3 class="step-title">I create the collage</h3>
+        <p class="step-body">Each piece is hand-composed and collaged, selecting the most wonderful moments from your child's collection. No two pieces are ever the same.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-number">03</div>
+        <div class="step-icon">🖼️</div>
+        <h3 class="step-title">Delivered, gallery-framed</h3>
+        <p class="step-body">Your finished piece arrives professionally framed and ready to hang — a genuine heirloom celebrating your child's creativity at this exact moment in time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <span class="section-eyebrow fade-in">Our Work</span>
+    <h2 class="section-title fade-in">Every piece is <em>one of a kind</em></h2>
+    <p class="section-body fade-in">Each commission is as unique as the child it celebrates. Here's a glimpse at the kinds of pieces we create.</p>
+    <div class="divider fade-in"></div>
+
+    <div class="gallery-grid">
+      <div class="gallery-card fade-in">
+        <div class="gallery-card-inner gc1">
+          <div class="gc-patch"></div>
+          <div class="gc-patch"></div>
+        </div>
+        <p class="gallery-label">A4 Framed · Mixed media</p>
+      </div>
+      <div class="gallery-card fade-in">
+        <div class="gallery-card-inner gc2">
+          <div class="gc-patch"></div>
+          <div class="gc-patch"></div>
+        </div>
+        <p class="gallery-label">A3 Framed · Watercolour &amp; drawings</p>
+      </div>
+      <div class="gallery-card fade-in">
+        <div class="gallery-card-inner gc3">
+          <div class="gc-patch"></div>
+          <div class="gc-patch"></div>
+        </div>
+        <p class="gallery-label">Large · Handprints &amp; handwriting</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <span class="section-eyebrow fade-in">Pricing</span>
+    <h2 class="section-title fade-in">Investment in a <em>forever keepsake</em></h2>
+    <p class="section-body fade-in">All pieces are bespoke and framed. Prices include UK delivery. International shipping available — get in touch for a quote.</p>
+    <div class="divider fade-in"></div>
+
+    <div class="pricing-grid">
+      <div class="price-card fade-in">
+        <p class="section-eyebrow">Small</p>
+        <p class="price-name">A4 Framed</p>
+        <p class="price-amount"><sup>£</sup>195</p>
+        <p class="price-desc">Perfect for a first keepsake or gift</p>
+        <div class="price-line"></div>
+        <ul class="price-features">
+          <li>Up to 8 original artworks</li>
+          <li>Professional gallery framing</li>
+          <li>Originals returned</li>
+          <li>UK delivery included</li>
+        </ul>
+        <a href="#contact" class="btn-card btn-card-dark">Get Started</a>
+      </div>
+
+      <div class="price-card featured fade-in">
+        <div class="price-badge">Most Popular</div>
+        <p class="section-eyebrow">Medium</p>
+        <p class="price-name">A3 Framed</p>
+        <p class="price-amount"><sup>£</sup>295</p>
+        <p class="price-desc">Our most loved size — a true statement piece</p>
+        <div class="price-line"></div>
+        <ul class="price-features">
+          <li>Up to 15 original artworks</li>
+          <li>Professional gallery framing</li>
+          <li>Originals returned</li>
+          <li>UK delivery included</li>
+          <li>Handwritten dedication option</li>
+        </ul>
+        <a href="#contact" class="btn-card btn-card-light">Get Started</a>
+      </div>
+
+      <div class="price-card fade-in">
+        <p class="section-eyebrow">Large</p>
+        <p class="price-name">Bespoke Large</p>
+        <p class="price-amount"><sup>£</sup>495<span style="font-size:22px">+</span></p>
+        <p class="price-desc">A serious heirloom for a special occasion</p>
+        <div class="price-line"></div>
+        <ul class="price-features">
+          <li>Unlimited original artworks</li>
+          <li>Custom size &amp; framing</li>
+          <li>Originals returned</li>
+          <li>UK delivery included</li>
+          <li>Personal consultation included</li>
+        </ul>
+        <a href="#contact" class="btn-card btn-card-dark">Enquire</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="container">
+    <span class="section-eyebrow fade-in">Reviews</span>
+    <h2 class="section-title fade-in">What families <em>are saying</em></h2>
+    <div class="divider fade-in"></div>
+
+    <div class="reviews-grid">
+      <div class="review-card fade-in">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"I cried when I opened the box. My daughter's scribbles turned into something I'll pass down to her one day. Absolutely magical."</p>
+        <p class="review-author">Sarah M. · London</p>
+      </div>
+      <div class="review-card fade-in">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The most thoughtful, personal gift I've ever given. My mum sobbed. The quality is extraordinary — it genuinely looks gallery-bought."</p>
+        <p class="review-author">Gemma T. · Manchester</p>
+      </div>
+      <div class="review-card fade-in">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Worth every penny. I was worried sending the originals but they came back perfectly. The finished piece is hanging as our centrepiece."</p>
+        <p class="review-author">Priya K. · Birmingham</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <span class="section-eyebrow fade-in">FAQ</span>
+    <h2 class="section-title fade-in">Questions <em>answered</em></h2>
+    <div class="divider fade-in"></div>
+
+    <div class="faq-list">
+      <div class="faq-item fade-in">
+        <div class="faq-q">Do I get the original artwork back?</div>
+        <div class="faq-a">Yes, always. Your child's originals are precious — I return every single piece once the collage is complete. Only high-quality scans and carefully selected originals are used in the final piece.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">How many pieces of artwork do I need to send?</div>
+        <div class="faq-a">There's no strict minimum or maximum. Most commissions use between 6 and 20 pieces. I'll guide you on what works best for the size you've chosen during our initial chat.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">How long does it take?</div>
+        <div class="faq-a">Typically 3–4 weeks from receiving the artwork to delivery. If you need it for a specific date or occasion, let me know upfront and I'll do my best to accommodate you.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">Do you ship internationally?</div>
+        <div class="faq-a">Yes! I ship worldwide. International shipping is quoted separately depending on the destination and size. Popular destinations include the USA, Australia, UAE, and Europe.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">Can I give this as a gift without the child knowing?</div>
+        <div class="faq-a">Absolutely — it's actually one of the most popular ways to commission a piece. I can liaise with a parent or grandparent discreetly, and deliver directly to the gift-giver.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">What types of artwork can you work with?</div>
+        <div class="faq-a">Drawings, paintings, watercolours, handprints, collages, handwriting, doodles — anything your child has made. The more variety, the richer the finished piece.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <span class="section-eyebrow" style="color:var(--gold)">Get in Touch</span>
+    <h2 class="section-title fade-in">Ready to create <em>something beautiful?</em></h2>
+    <div class="divider"></div>
+    <p class="section-body fade-in">I'd love to hear about your child's artwork and help you create a piece your family will treasure for generations. Drop me a message to get started.</p>
+    <br/><br/>
+    <a class="contact-email" href="mailto:hello@littlestgalleries.com">hello@littlestgalleries.com</a>
+    <br/><br/>
+    <div class="social-links">
+      <a class="social-link" href="https://www.instagram.com/littlestgalleries" target="_blank" rel="noopener">Instagram</a>
+      <a class="social-link" href="https://www.tiktok.com/@littlestgalleries" target="_blank" rel="noopener">TikTok</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Littlest Galleries · All rights reserved · littlestgalleries.com</p>
+</footer>
+
+<script>
+  // Fade in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => { if (el.isIntersecting) { el.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>
