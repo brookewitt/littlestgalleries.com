@@ -446,6 +446,82 @@
     }
     .faq-item.open .faq-a { max-height: 400px; padding-bottom: 28px; }
 
+    /* ── WORKSHOPS ── */
+    #workshops { background: var(--warm); }
+    .workshop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 64px;
+    }
+    .workshop-card {
+      background: var(--cream);
+      padding: 36px 32px;
+      border: 1px solid var(--border);
+    }
+    .workshop-icon { font-size: 32px; margin-bottom: 20px; }
+    .workshop-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+    .workshop-card-body { font-size: 15px; color: var(--mid); font-weight: 300; line-height: 1.7; }
+    .workshop-pricing {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-top: 64px;
+      background: var(--ink);
+      padding: 48px;
+      gap: 0;
+    }
+    .workshop-price-card {
+      flex: 1;
+      text-align: center;
+      padding: 0 32px;
+    }
+    .workshop-price-card .section-eyebrow { color: var(--gold); margin-bottom: 16px; }
+    .workshop-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 300;
+      color: white;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .workshop-price span { font-size: 18px; color: rgba(255,255,255,0.5); }
+    .workshop-price-desc { font-size: 13px; color: rgba(255,255,255,0.45); font-weight: 300; line-height: 1.5; }
+    .workshop-price-divider { width: 1px; background: rgba(255,255,255,0.12); align-self: stretch; }
+    @media (max-width: 900px) {
+      .workshop-grid { grid-template-columns: 1fr; gap: 20px; }
+      .workshop-pricing { flex-direction: column; gap: 32px; padding: 40px 24px; }
+      .workshop-price-divider { width: 100%; height: 1px; align-self: auto; }
+    }
+
+    .workshop-includes {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+    }
+    .workshop-includes li {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 300;
+      padding-left: 20px;
+      position: relative;
+    }
+    .workshop-includes li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 12px;
+    }
+
     /* ── ABOUT ── */
     .about-grid {
       display: grid;
@@ -706,6 +782,7 @@
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#workshops">Workshops</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#faq">FAQ</a></li>
@@ -722,6 +799,7 @@
   <a href="#how-it-works" onclick="document.querySelector('.mobile-menu').classList.remove('open')">How It Works</a>
   <a href="#gallery" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Gallery</a>
   <a href="#pricing" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Pricing</a>
+  <a href="#workshops" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Workshops</a>
   <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('open')">About</a>
   <a href="#reviews" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Reviews</a>
   <a href="#contact" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Commission a Piece</a>
@@ -955,6 +1033,66 @@
         <div class="faq-q">Can I commission a piece using artwork from more than one child?</div>
         <div class="faq-a">Absolutely — sibling collages are some of my favourites. I can blend artwork from two or more children into one piece, making it an even more special family heirloom.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKSHOPS -->
+<section id="workshops">
+  <div class="container">
+    <span class="section-eyebrow fade-in">Workshops</span>
+    <h2 class="section-title fade-in">Make it together — <em>a guided experience</em></h2>
+    <p class="section-body fade-in">Join me for an intimate, guided workshop where you and your child create your own Littlest Galleries piece — step by step, with everything included. Wine, nibbles, materials, and a framed piece of art to take home.</p>
+    <div class="divider fade-in"></div>
+
+    <div class="workshop-grid">
+      <div class="workshop-card fade-in">
+        <div class="workshop-icon">🎨</div>
+        <h3 class="workshop-card-title">The Experience</h3>
+        <p class="workshop-card-body">A 90-minute to 2-hour guided session for up to 6 families. You bring 8–12 pieces of your child's artwork — I guide you through arranging, layering and collaging a beautiful 12×24 inch piece that's entirely your own.</p>
+      </div>
+      <div class="workshop-card fade-in">
+        <div class="workshop-icon">✨</div>
+        <h3 class="workshop-card-title">Everything Included</h3>
+        <p class="workshop-card-body">All materials, a light oak gallery frame, wine and nibbles — everything is taken care of. No experience needed, just bring your child's artwork and enjoy the process. Every piece looks completely different even though everyone follows the same steps.</p>
+      </div>
+      <div class="workshop-card fade-in">
+        <div class="workshop-icon">🎁</div>
+        <h3 class="workshop-card-title">Perfect as a Gift</h3>
+        <p class="workshop-card-body">Workshop sessions make a brilliant gift experience — especially around Christmas, Mother's Day, or end of school year. Also available as a private group booking for hen dos, birthday celebrations, or corporate events.</p>
+      </div>
+    </div>
+
+    <div class="workshop-pricing fade-in">
+      <div class="workshop-price-card">
+        <p class="section-eyebrow">What's Included</p>
+        <ul class="workshop-includes">
+          <li>12×24 inch bespoke collage</li>
+          <li>Light oak gallery frame</li>
+          <li>All materials & tools</li>
+          <li>Wine & nibbles</li>
+          <li>Step-by-step guidance from Brooke</li>
+          <li>90 mins – 2 hours of creativity</li>
+        </ul>
+      </div>
+      <div class="workshop-price-divider"></div>
+      <div class="workshop-price-card" style="text-align:center;">
+        <p class="section-eyebrow">Per Family</p>
+        <p class="workshop-price">£200</p>
+        <p class="workshop-price-desc">All inclusive · Maximum 6 families per session</p>
+        <a href="#contact" class="btn-primary" style="display:inline-block; margin-top:28px; font-size:12px; padding:14px 28px;">Register Your Interest</a>
+      </div>
+      <div class="workshop-price-divider"></div>
+      <div class="workshop-price-card">
+        <p class="section-eyebrow">Private Group</p>
+        <p class="workshop-price" style="font-size:36px;">Bespoke</p>
+        <p class="workshop-price-desc">Exclusive session for your group — hen dos, birthday celebrations, corporate events. Get in touch to discuss.</p>
+        <a href="#contact" style="display:inline-block; margin-top:28px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); text-decoration:none;">Enquire →</a>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top: 48px;" class="fade-in">
+      <p style="font-size:15px; color:var(--mid); font-weight:300;">Sessions run in London. Please bring 8–12 pieces of your child's artwork on the day.</p>
     </div>
   </div>
 </section>
