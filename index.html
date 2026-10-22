@@ -264,26 +264,24 @@
       gap: 48px;
       margin-top: 64px;
     }
-    .step { position: relative; }
-    .step-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 64px;
-      font-weight: 300;
-      color: rgba(28,24,18,0.08);
-      line-height: 1;
-      margin-bottom: 20px;
+    .step { text-align: center; }
+    .step-photo {
+      width: 240px;
+      height: 240px;
+      max-width: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 28px;
     }
     .step-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 400;
-      margin-bottom: 12px;
+      color: var(--rust);
+      margin-bottom: 10px;
     }
-    .step-body { font-size: 15px; color: var(--mid); font-weight: 300; line-height: 1.7; }
-    .step-icon {
-      font-size: 28px;
-      margin-bottom: 16px;
-    }
+    .step-body { font-size: 15px; color: var(--mid); font-weight: 300; line-height: 1.7; max-width: 300px; margin: 0 auto; }
 
     /* ── GALLERY ── */
     #gallery .gallery-grid {
@@ -388,12 +386,14 @@
 
     /* ── TESTIMONIALS ── */
     #reviews .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 28px;
       margin-top: 64px;
     }
     .review-card {
+      flex: 0 1 calc((100% - 56px) / 3);
       background: var(--warm);
       padding: 36px;
       border-left: 3px solid var(--rust);
@@ -409,6 +409,28 @@
       color: var(--ink);
     }
     .review-author { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
+    .hero-quote {
+      border-left: 3px solid var(--rust);
+      padding: 4px 0 4px 20px;
+      margin-bottom: 40px;
+    }
+    .hero-quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 2.4vw, 32px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.25;
+      color: var(--ink);
+    }
+    .hero-quote-text em { color: var(--rust); }
+    .hero-quote-author {
+      margin-top: 10px;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .hero-quote-author .review-stars { display: inline; margin: 0 8px 0 0; }
 
     /* ── FAQ ── */
     #faq { background: var(--warm); }
@@ -445,82 +467,6 @@
       transition: max-height 0.4s ease, padding 0.3s;
     }
     .faq-item.open .faq-a { max-height: 400px; padding-bottom: 28px; }
-
-    /* ── WORKSHOPS ── */
-    #workshops { background: var(--warm); }
-    .workshop-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-      margin-top: 64px;
-    }
-    .workshop-card {
-      background: var(--cream);
-      padding: 36px 32px;
-      border: 1px solid var(--border);
-    }
-    .workshop-icon { font-size: 32px; margin-bottom: 20px; }
-    .workshop-card-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 24px;
-      font-weight: 400;
-      margin-bottom: 12px;
-    }
-    .workshop-card-body { font-size: 15px; color: var(--mid); font-weight: 300; line-height: 1.7; }
-    .workshop-pricing {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      margin-top: 64px;
-      background: var(--ink);
-      padding: 48px;
-      gap: 0;
-    }
-    .workshop-price-card {
-      flex: 1;
-      text-align: center;
-      padding: 0 32px;
-    }
-    .workshop-price-card .section-eyebrow { color: var(--gold); margin-bottom: 16px; }
-    .workshop-price {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 48px;
-      font-weight: 300;
-      color: white;
-      line-height: 1;
-      margin-bottom: 12px;
-    }
-    .workshop-price span { font-size: 18px; color: rgba(255,255,255,0.5); }
-    .workshop-price-desc { font-size: 13px; color: rgba(255,255,255,0.45); font-weight: 300; line-height: 1.5; }
-    .workshop-price-divider { width: 1px; background: rgba(255,255,255,0.12); align-self: stretch; }
-    @media (max-width: 900px) {
-      .workshop-grid { grid-template-columns: 1fr; gap: 20px; }
-      .workshop-pricing { flex-direction: column; gap: 32px; padding: 40px 24px; }
-      .workshop-price-divider { width: 100%; height: 1px; align-self: auto; }
-    }
-
-    .workshop-includes {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      text-align: left;
-    }
-    .workshop-includes li {
-      font-size: 14px;
-      color: rgba(255,255,255,0.7);
-      font-weight: 300;
-      padding-left: 20px;
-      position: relative;
-    }
-    .workshop-includes li::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      color: var(--gold);
-      font-size: 12px;
-    }
 
     /* ── ABOUT ── */
     .about-grid {
@@ -750,10 +696,12 @@
       .container { padding: 0 24px; }
       section { padding: 72px 0; }
 
-      .steps-grid { grid-template-columns: 1fr; gap: 28px; }
+      .steps-grid { grid-template-columns: 1fr; gap: 56px; }
+      .step-photo { width: 220px; height: 220px; }
       #gallery .gallery-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
       .pricing-grid { grid-template-columns: 1fr; gap: 24px; }
-      #reviews .reviews-grid { grid-template-columns: 1fr; gap: 20px; }
+      #reviews .reviews-grid { gap: 20px; }
+      .review-card { flex-basis: 100%; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .contact-form-wrap { padding: 32px 24px; }
       .form-row { grid-template-columns: 1fr; }
@@ -782,7 +730,6 @@
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#workshops">Workshops</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#faq">FAQ</a></li>
@@ -799,7 +746,6 @@
   <a href="#how-it-works" onclick="document.querySelector('.mobile-menu').classList.remove('open')">How It Works</a>
   <a href="#gallery" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Gallery</a>
   <a href="#pricing" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Pricing</a>
-  <a href="#workshops" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Workshops</a>
   <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('open')">About</a>
   <a href="#reviews" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Reviews</a>
   <a href="#contact" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Commission a Piece</a>
@@ -808,6 +754,10 @@
 <!-- HERO -->
 <section id="home">
   <div class="hero-left fade-in">
+    <div class="hero-quote">
+      <p class="hero-quote-text">&ldquo;The <em>best thing</em> I ever ordered on Etsy!&rdquo;</p>
+      <p class="hero-quote-author"><span class="review-stars">★★★★★</span>Valentina, verified Etsy buyer</p>
+    </div>
     <p class="hero-eyebrow">Bespoke Children's Artwork · UK</p>
     <h1 class="hero-title">Your child's art, <em>gallery-worthy</em> forever</h1>
     <p class="hero-subtitle">We take your little one's drawings, paintings, handprints and handwriting and transform them into a stunning, professionally framed collage — a keepsake they'll treasure for life.</p>
@@ -834,22 +784,19 @@
 
     <div class="steps-grid">
       <div class="step fade-in">
-        <div class="step-number">01</div>
-        <div class="step-icon">📦</div>
-        <h3 class="step-title">You send me the artwork</h3>
-        <p class="step-body">Post your child's originals to me — drawings, paintings, handprints, handwriting, whatever they've made. I'll handle everything with care and return the originals.</p>
+        <img class="step-photo" src="process-2330.jpg" alt="Sorting through a pile of children's artwork for a Littlest Galleries collage" style="object-position: 50% 70%;" />
+        <h3 class="step-title">1. Gather &amp; Send</h3>
+        <p class="step-body">Collect your child's drawings, paintings and handprints and post them to my London studio. Originals are always returned.</p>
       </div>
       <div class="step fade-in">
-        <div class="step-number">02</div>
-        <div class="step-icon">✂️</div>
-        <h3 class="step-title">I create the collage</h3>
-        <p class="step-body">Each piece is hand-composed and collaged, selecting the most wonderful moments from your child's collection. No two pieces are ever the same.</p>
+        <img class="step-photo" src="process-1687.jpg" alt="Close-up of a hand-collaged children's artwork piece" />
+        <h3 class="step-title">2. Design &amp; Create</h3>
+        <p class="step-body">I hand-compose and collage your piece, picking out the most wonderful moments. No two are ever the same.</p>
       </div>
       <div class="step fade-in">
-        <div class="step-number">03</div>
-        <div class="step-icon">🖼️</div>
-        <h3 class="step-title">Delivered, gallery-framed</h3>
-        <p class="step-body">Your finished piece arrives professionally framed and ready to hang — a genuine heirloom celebrating your child's creativity at this exact moment in time.</p>
+        <img class="step-photo" src="process-2578.jpg" alt="Finished Littlest Galleries collage in a light oak frame on an easel" style="object-position: 50% 30%;" />
+        <h3 class="step-title">3. Delivered &amp; Displayed</h3>
+        <p class="step-body">Your piece arrives professionally framed in light oak, ready to hang and treasure for years to come.</p>
       </div>
     </div>
   </div>
@@ -965,6 +912,11 @@
     <div class="reviews-grid">
       <div class="review-card fade-in">
         <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Brooke was incredible and made this in record time for my husband's birthday. Brooke was so easy to communicate with. Brooke took my children's artworks and created a wonderfully imaginative collage that looks beautiful in our home. The quality of the frame and the execution of the work are exemplary. Thank you!!!"</p>
+        <p class="review-author">Hannah · October 2026</p>
+      </div>
+      <div class="review-card fade-in">
+        <div class="review-stars">★★★★★</div>
         <p class="review-text">"This is wonderfully crafted and the best thing I ever ordered on Etsy! Brooke is a lovely seller who was happy to discuss the collage before I ordered it, and kept me posted throughout. It's an incredible piece and my girls are absolutely mesmerised by seeing their own art on display in the living room. We love it!"</p>
         <p class="review-author">Valentina · May 2026</p>
       </div>
@@ -1033,61 +985,6 @@
         <div class="faq-q">Can I commission a piece using artwork from more than one child?</div>
         <div class="faq-a">Absolutely — sibling collages are some of my favourites. I can blend artwork from two or more children into one piece, making it an even more special family heirloom.</div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- WORKSHOPS -->
-<section id="workshops">
-  <div class="container">
-    <span class="section-eyebrow fade-in">Workshops</span>
-    <h2 class="section-title fade-in">Make it together — <em>a guided experience</em></h2>
-    <p class="section-body fade-in">Join me for an intimate, guided workshop where you and your child create your own Littlest Galleries piece — step by step, with everything included. Wine, nibbles, materials, and a framed piece of art to take home.</p>
-    <div class="divider fade-in"></div>
-
-    <div class="workshop-grid">
-      <div class="workshop-card fade-in">
-        <div class="workshop-icon">🎨</div>
-        <h3 class="workshop-card-title">A Heritage Piece</h3>
-        <p class="workshop-card-body">This isn't just a craft session — it's the creation of something that will hang on your wall for decades. Using your own child's drawings, paintings and marks, you'll make a gallery-worthy piece that celebrates exactly who they are right now, at this age, in this moment.</p>
-      </div>
-      <div class="workshop-card fade-in">
-        <div class="workshop-icon">✨</div>
-        <h3 class="workshop-card-title">The Most Personal Art You'll Ever Make</h3>
-        <p class="workshop-card-body">There's nothing more intimate than working with your own child's artwork. In a small group of just 6 families, I guide you through every step — arranging, layering, collaging — until what was once a pile of drawings becomes a stunning 12×24 inch framed piece of art. Every piece is completely unique, because every child is.</p>
-      </div>
-    </div>
-
-    <div class="workshop-pricing fade-in">
-      <div class="workshop-price-card">
-        <p class="section-eyebrow">What's Included</p>
-        <ul class="workshop-includes">
-          <li>12×24 inch bespoke collage</li>
-          <li>Light oak gallery frame</li>
-          <li>All materials & tools</li>
-          <li>Wine & nibbles</li>
-          <li>Step-by-step guidance from Brooke</li>
-          <li>90 mins – 2 hours of creativity</li>
-        </ul>
-      </div>
-      <div class="workshop-price-divider"></div>
-      <div class="workshop-price-card" style="text-align:center;">
-        <p class="section-eyebrow">Per Family</p>
-        <p class="workshop-price">£200</p>
-        <p class="workshop-price-desc">All inclusive · Maximum 6 families per session</p>
-        <a href="#contact" class="btn-primary" style="display:inline-block; margin-top:28px; font-size:12px; padding:14px 28px;">Register Your Interest</a>
-      </div>
-      <div class="workshop-price-divider"></div>
-      <div class="workshop-price-card">
-        <p class="section-eyebrow">Private Group</p>
-        <p class="workshop-price" style="font-size:36px;">Bespoke</p>
-        <p class="workshop-price-desc">Exclusive session for your group — hen dos, birthday celebrations, corporate events. Get in touch to discuss.</p>
-        <a href="#contact" style="display:inline-block; margin-top:28px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); text-decoration:none;">Enquire →</a>
-      </div>
-    </div>
-
-    <div style="text-align:center; margin-top: 48px;" class="fade-in">
-      <p style="font-size:15px; color:var(--mid); font-weight:300;">Sessions run in London. Please bring 8–12 pieces of your child's artwork on the day.</p>
     </div>
   </div>
 </section>
