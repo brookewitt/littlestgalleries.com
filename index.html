@@ -211,10 +211,32 @@
       color: rgba(28,24,18,0.5);
       transform: rotate(-3deg);
     }
+    .hero-slides { position: absolute; inset: 0; overflow: hidden; }
+    .hero-slide {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+    .hero-slide.active { opacity: 1; }
+    .hero-dots {
+      position: absolute;
+      left: 0; right: 0; bottom: -44px;
+      display: flex; justify-content: center; gap: 10px;
+    }
+    .hero-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      border: 1px solid var(--mid); background: transparent;
+      padding: 0; cursor: pointer; transition: background 0.3s, border-color 0.3s;
+    }
+    .hero-dot.active { background: var(--rust); border-color: var(--rust); }
+    @media (prefers-reduced-motion: reduce) { .hero-slide { transition: none; } }
     .frame-badge {
       position: absolute;
       bottom: -16px;
       right: -16px;
+      z-index: 2;
       background: var(--rust);
       color: white;
       font-size: 11px;
@@ -315,74 +337,67 @@
 
     /* ── PRICING ── */
     #pricing { background: var(--warm); }
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 64px;
-    }
-    .price-card {
+    .price-box {
+      margin-top: 56px;
+      max-width: 760px;
       background: var(--cream);
-      padding: 40px 36px;
       border: 1px solid var(--border);
-      position: relative;
+      border-radius: 10px;
+      padding: 48px 56px;
     }
-    .price-card.featured {
-      background: var(--ink);
-      color: white;
-      border-color: var(--ink);
-    }
-    .price-card.featured .section-eyebrow { color: var(--gold); }
-    .price-card.featured .price-desc { color: rgba(255,255,255,0.55); }
-    .price-card.featured .price-line { color: rgba(255,255,255,0.2); }
-    .price-card.featured .price-features li { color: rgba(255,255,255,0.75); }
-    .price-card.featured .price-features li::before { color: var(--gold); }
-    .price-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--rust);
-      color: white;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 5px 16px;
-    }
-    .price-name {
+    .price-box-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 28px;
+      font-size: clamp(28px, 3vw, 38px);
       font-weight: 400;
       margin-bottom: 8px;
     }
-    .price-amount {
+    .price-box-included {
+      font-size: 14px;
+      color: var(--sage);
+      letter-spacing: 0.04em;
+      margin-bottom: 32px;
+    }
+    .price-list { list-style: none; }
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
       font-family: 'Cormorant Garamond', serif;
-      font-size: 52px;
+    }
+    .price-row:last-child { border-bottom: none; }
+    .price-size { font-size: 26px; font-weight: 600; min-width: 110px; }
+    .price-dash { flex: 1; border-bottom: 1px dotted rgba(28,24,18,0.25); transform: translateY(-6px); }
+    .price-framed { font-size: 26px; font-weight: 600; color: var(--rust); }
+    .price-unframed {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--mid);
       font-weight: 300;
-      line-height: 1;
-      margin: 20px 0 8px;
+      min-width: 120px;
+      text-align: right;
     }
-    .price-amount sup { font-size: 24px; vertical-align: super; }
-    .price-desc { font-size: 13px; color: var(--mid); margin-bottom: 28px; font-weight: 300; }
-    .price-line { height: 1px; background: var(--border); margin-bottom: 28px; }
-    .price-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
-    .price-features li { font-size: 14px; color: var(--mid); font-weight: 300; padding-left: 20px; position: relative; }
-    .price-features li::before { content: '✓'; position: absolute; left: 0; color: var(--sage); font-size: 12px; top: 1px; }
-    .btn-card {
-      display: block;
-      text-align: center;
-      padding: 14px;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: 0.2s;
+    .price-box-footer {
+      margin-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
     }
-    .btn-card-dark { background: var(--ink); color: white; }
-    .btn-card-dark:hover { background: #2e2820; }
-    .btn-card-light { background: white; color: var(--ink); }
-    .btn-card-light:hover { background: var(--cream); }
+    .price-box-note { font-size: 14px; color: var(--mid); font-weight: 300; }
+    .price-box-note a { color: var(--rust); text-decoration: none; }
+    @media (max-width: 600px) {
+      .price-box { padding: 32px 22px; }
+      .price-row { flex-wrap: wrap; gap: 4px 12px; }
+      .price-size, .price-framed { font-size: 22px; }
+      .price-size { min-width: 0; }
+      .price-dash { display: none; }
+      .price-framed { margin-left: auto; }
+      .price-unframed { width: 100%; text-align: right; min-width: 0; }
+      .price-box-footer .btn-primary { width: 100%; text-align: center; }
+    }
 
     /* ── TESTIMONIALS ── */
     #reviews .reviews-grid {
@@ -699,7 +714,6 @@
       .steps-grid { grid-template-columns: 1fr; gap: 56px; }
       .step-photo { width: 220px; height: 220px; }
       #gallery .gallery-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
-      .pricing-grid { grid-template-columns: 1fr; gap: 24px; }
       #reviews .reviews-grid { gap: 20px; }
       .review-card { flex-basis: 100%; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -709,7 +723,6 @@
       .faq-list { max-width: 100%; }
       .section-title { font-size: 32px; }
       .hero-title { font-size: 36px; }
-      .price-card { padding: 32px 24px; }
       .gallery-label { font-size: 11px; }
     }
 
@@ -768,7 +781,14 @@
   </div>
   <div class="hero-right fade-in">
     <div class="hero-art">
-      <img src="Raya South London.jpg" alt="Child standing in front of her bespoke Littlest Galleries framed artwork" style="width:100%;height:100%;object-fit:cover;display:block;" />
+      <div class="hero-slides" id="heroSlides">
+        <img class="hero-slide active" src="Raya South London.jpg" alt="Little girl looking up at her bespoke Littlest Galleries framed collage" style="object-position:50% 50%;" />
+        <img class="hero-slide" src="process-1697.jpg" alt="Brooke holding a finished framed children's art collage in a bright living room" style="object-position:50% 60%;" loading="lazy" />
+        <img class="hero-slide" src="process-0991.jpg" alt="Two framed sibling collages resting on a garden bench" style="object-position:30% 55%;" loading="lazy" />
+        <img class="hero-slide" src="process-2872.jpg" alt="Framed children's art collage on an easel in a London garden" style="object-position:50% 45%;" loading="lazy" />
+        <img class="hero-slide" src="Athena Bayswater.jpg" alt="Close-up of a bold children's art collage in a light oak frame" style="object-position:50% 50%;" loading="lazy" />
+      </div>
+      <div class="hero-dots" id="heroDots"><button class="hero-dot active" aria-label="Show photo 1"></button><button class="hero-dot" aria-label="Show photo 2"></button><button class="hero-dot" aria-label="Show photo 3"></button><button class="hero-dot" aria-label="Show photo 4"></button><button class="hero-dot" aria-label="Show photo 5"></button></div>
       <div class="frame-badge">Gallery Framed</div>
     </div>
   </div>
@@ -844,61 +864,22 @@
   <div class="container">
     <span class="section-eyebrow fade-in">Pricing</span>
     <h2 class="section-title fade-in">Investment in a <em>forever keepsake</em></h2>
-    <p class="section-body fade-in">Every piece is bespoke and made by hand. Choose framed for a ready-to-hang heirloom, or unframed if you have a frame at home. Prices include UK delivery — international shipping available on request.</p>
-    <div class="divider fade-in"></div>
+    <p class="section-body fade-in">Every piece is bespoke and made by hand from your child's own artwork. No hidden extras: framing and delivery are already in the price.</p>
 
-    <div class="pricing-grid">
-      <div class="price-card fade-in">
-        <p class="section-eyebrow">18 × 18 inches</p>
-        <p class="price-name">Small</p>
-        <p class="price-amount"><sup>£</sup>446</p>
-        <p class="price-desc">With Frame</p>
-        <div class="price-line"></div>
-        <ul class="price-features">
-          <li>Bespoke hand-collaged artwork</li>
-          <li>Light oak gallery frame included</li>
-          <li>Original artwork returned</li>
-          <li>UK delivery included</li>
-          <li>Without Frame: £265</li>
-        </ul>
-        <a href="#contact" class="btn-card btn-card-dark">Get Started</a>
-      </div>
-
-      <div class="price-card featured fade-in">
-        <div class="price-badge">Most Popular</div>
-        <p class="section-eyebrow">24 × 30 inches</p>
-        <p class="price-name">Medium</p>
-        <p class="price-amount"><sup>£</sup>600</p>
-        <p class="price-desc">With Frame</p>
-        <div class="price-line"></div>
-        <ul class="price-features">
-          <li>Bespoke hand-collaged artwork</li>
-          <li>Light oak gallery frame included</li>
-          <li>Original artwork returned</li>
-          <li>UK delivery included</li>
-          <li>Without Frame: £355</li>
-        </ul>
-        <a href="#contact" class="btn-card btn-card-light">Get Started</a>
-      </div>
-
-      <div class="price-card fade-in">
-        <p class="section-eyebrow">30 × 40 inches</p>
-        <p class="price-name">Large</p>
-        <p class="price-amount"><sup>£</sup>785</p>
-        <p class="price-desc">With Frame</p>
-        <div class="price-line"></div>
-        <ul class="price-features">
-          <li>Bespoke hand-collaged artwork</li>
-          <li>Light oak gallery frame included</li>
-          <li>Original artwork returned</li>
-          <li>UK delivery included</li>
-          <li>Without Frame: £470</li>
-        </ul>
-        <a href="#contact" class="btn-card btn-card-dark">Get Started</a>
+    <div class="price-box fade-in">
+      <h3 class="price-box-title">Collage Pricing <span style="color:var(--mid);font-weight:300;">(GBP / inches)</span></h3>
+      <p class="price-box-included">✓ Light oak gallery frame &nbsp;✓ Insured UK delivery &nbsp;✓ Originals returned</p>
+      <ul class="price-list">
+        <li class="price-row"><span class="price-size">18×18</span><span class="price-dash"></span><span class="price-framed">£446</span><span class="price-unframed">unframed £265</span></li>
+        <li class="price-row"><span class="price-size">24×30</span><span class="price-dash"></span><span class="price-framed">£600</span><span class="price-unframed">unframed £355</span></li>
+        <li class="price-row"><span class="price-size">30×40</span><span class="price-dash"></span><span class="price-framed">£785</span><span class="price-unframed">unframed £470</span></li>
+        <li class="price-row"><span class="price-size">36×48</span><span class="price-dash"></span><span class="price-framed">£950</span><span class="price-unframed">unframed £595</span></li>
+      </ul>
+      <div class="price-box-footer">
+        <p class="price-box-note">Need a custom size? <a href="#contact">Get in touch</a></p>
+        <a href="#contact" class="btn-primary">Commission a Piece</a>
       </div>
     </div>
-
-    <p style="text-align:center; margin-top: 36px; font-size:14px; color: var(--mid); font-weight:300;">Need a custom size? <a href="#contact" style="color:var(--rust); text-decoration:none;">Get in touch</a> — bespoke sizing available on request.</p>
   </div>
 </section>
 
@@ -971,7 +952,7 @@
       </div>
       <div class="faq-item fade-in">
         <div class="faq-q">What sizes are available and what do they cost?</div>
-        <div class="faq-a">I offer three sizes: 18×18" (£446), 24×30" (£600), and 30×40" (£785). All prices include professional framing in a light-oak floating frame and UK delivery. Unframed options are also available. There are no hidden costs.</div>
+        <div class="faq-a">I offer four sizes: 18×18" (£446), 24×30" (£600), 30×40" (£785) and 36×48" (£950). All prices include professional framing in a light-oak floating frame and insured UK delivery. Unframed options are also available. There are no hidden costs.</div>
       </div>
       <div class="faq-item fade-in">
         <div class="faq-q">Is this a good gift idea?</div>
@@ -1043,6 +1024,8 @@
             <option value="24x30 Unframed (£355)">24×30 inches — Unframed £355</option>
             <option value="30x40 Framed (£785)">30×40 inches — Framed £785</option>
             <option value="30x40 Unframed (£470)">30×40 inches — Unframed £470</option>
+            <option value="36x48 Framed (£950)">36×48 inches — Framed £950</option>
+            <option value="36x48 Unframed (£595)">36×48 inches — Unframed £595</option>
             <option value="Custom / Not sure yet">Custom size / Not sure yet</option>
           </select>
         </div>
@@ -1089,6 +1072,34 @@
 </div>
 
 <script>
+  // Hero carousel
+  (function () {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dot');
+    if (slides.length < 2) return;
+    let i = 0, timer;
+    function show(n) {
+      slides[i].classList.remove('active'); dots[i].classList.remove('active');
+      i = (n + slides.length) % slides.length;
+      slides[i].classList.add('active'); dots[i].classList.add('active');
+    }
+    function start() { stop(); timer = setInterval(() => show(i + 1), 4500); }
+    function stop() { clearInterval(timer); }
+    dots.forEach((d, n) => d.addEventListener('click', () => { show(n); start(); }));
+    const box = document.getElementById('heroSlides').parentElement;
+    box.addEventListener('mouseenter', stop);
+    box.addEventListener('mouseleave', start);
+    let x0 = null;
+    box.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener('touchend', e => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 40) { show(i + (dx < 0 ? 1 : -1)); start(); }
+      x0 = null;
+    });
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) start();
+  })();
+
   // Fade in on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(el => { if (el.isIntersecting) { el.target.classList.add('visible'); } });
