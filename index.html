@@ -245,6 +245,24 @@
       padding: 10px 18px;
     }
 
+    .trust-strip {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 24px;
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      max-width: 480px;
+    }
+    .trust-strip li {
+      font-size: 13px;
+      color: var(--ink);
+      padding-left: 20px;
+      position: relative;
+    }
+    .trust-strip li::before { content: '✓'; position: absolute; left: 0; color: var(--sage); }
+
     /* ── SECTION BASE ── */
     section { padding: 100px 0; }
     .container { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
@@ -280,6 +298,8 @@
 
     /* ── HOW IT WORKS ── */
     #how-it-works { background: var(--warm); }
+    #faq { background: var(--warm); }
+    #about { background: var(--cream); }
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -305,12 +325,21 @@
     }
     .step-body { font-size: 15px; color: var(--mid); font-weight: 300; line-height: 1.7; max-width: 300px; margin: 0 auto; }
 
+    /* ── PRICING + GALLERY ── */
+    .shop-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 64px;
+      align-items: start;
+    }
+    .shop-grid .section-body { font-size: 16px; }
+    .shop-grid .price-box { margin-top: 0; padding: 40px; }
+
     /* ── GALLERY ── */
     #gallery .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 64px;
+      gap: 14px;
     }
     .gallery-card {
       background: var(--warm);
@@ -328,8 +357,8 @@
     }
     .gallery-card:hover img { transform: scale(1.03); }
     .gallery-label {
-      padding: 12px 0 0;
-      font-size: 12px;
+      padding: 8px 0 0;
+      font-size: 10px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--mid);
@@ -350,6 +379,16 @@
       font-size: clamp(28px, 3vw, 38px);
       font-weight: 400;
       margin-bottom: 8px;
+    }
+    .price-box-units {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      font-weight: 400;
+      margin-left: 8px;
+      white-space: nowrap;
     }
     .price-box-included {
       font-size: 14px;
@@ -713,7 +752,8 @@
 
       .steps-grid { grid-template-columns: 1fr; gap: 56px; }
       .step-photo { width: 220px; height: 220px; }
-      #gallery .gallery-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .shop-grid { grid-template-columns: 1fr; gap: 72px; }
+      #gallery .gallery-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
       #reviews .reviews-grid { gap: 20px; }
       .review-card { flex-basis: 100%; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -727,7 +767,6 @@
     }
 
     @media (max-width: 480px) {
-      #gallery .gallery-grid { grid-template-columns: 1fr; }
       .hero-buttons { flex-direction: column; }
       .btn-primary, .btn-ghost { text-align: center; }
       .social-links { flex-direction: column; gap: 12px; align-items: center; }
@@ -740,11 +779,11 @@
 <nav>
   <a class="nav-logo" href="#home">Littlest Galleries</a>
   <ul class="nav-links">
-    <li><a href="#how-it-works">How It Works</a></li>
-    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact" class="nav-cta">Commission a Piece</a></li>
   </ul>
@@ -756,11 +795,12 @@
 <div class="mobile-menu">
   <button class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('open')">✕</button>
   <a href="#home" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Home</a>
-  <a href="#how-it-works" onclick="document.querySelector('.mobile-menu').classList.remove('open')">How It Works</a>
-  <a href="#gallery" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Gallery</a>
   <a href="#pricing" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Pricing</a>
-  <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('open')">About</a>
+  <a href="#gallery" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Gallery</a>
   <a href="#reviews" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Reviews</a>
+  <a href="#how-it-works" onclick="document.querySelector('.mobile-menu').classList.remove('open')">How It Works</a>
+  <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('open')">About</a>
+  <a href="#faq" onclick="document.querySelector('.mobile-menu').classList.remove('open')">FAQ</a>
   <a href="#contact" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Commission a Piece</a>
 </div>
 
@@ -776,98 +816,39 @@
     <p class="hero-subtitle">We take your little one's drawings, paintings, handprints and handwriting and transform them into a stunning, professionally framed collage — a keepsake they'll treasure for life.</p>
     <div class="hero-buttons">
       <a href="#contact" class="btn-primary">Commission a Piece</a>
-      <a href="#how-it-works" class="btn-ghost">How It Works</a>
+      <a href="#pricing" class="btn-ghost">View Pricing</a>
     </div>
+    <ul class="trust-strip">
+      <li>Framing &amp; UK delivery included</li>
+      <li>Originals returned safely</li>
+      <li>Sent back within 2 weeks</li>
+    </ul>
   </div>
   <div class="hero-right fade-in">
     <div class="hero-art">
       <div class="hero-slides" id="heroSlides">
-        <img class="hero-slide active" src="Raya South London.jpg" alt="Little girl looking up at her bespoke Littlest Galleries framed collage" style="object-position:50% 50%;" />
-        <img class="hero-slide" src="process-1697.jpg" alt="Brooke holding a finished framed children's art collage in a bright living room" style="object-position:50% 60%;" loading="lazy" />
+        <img class="hero-slide active" src="process-2872.jpg" alt="Frida-inspired children's art collage on an easel in a London garden" style="object-position:50% 45%;" />
         <img class="hero-slide" src="process-0991.jpg" alt="Two framed sibling collages resting on a garden bench" style="object-position:30% 55%;" loading="lazy" />
-        <img class="hero-slide" src="process-2872.jpg" alt="Framed children's art collage on an easel in a London garden" style="object-position:50% 45%;" loading="lazy" />
-        <img class="hero-slide" src="Athena Bayswater.jpg" alt="Close-up of a bold children's art collage in a light oak frame" style="object-position:50% 50%;" loading="lazy" />
+        <img class="hero-slide" src="Raya South London.jpg" alt="Little girl looking up at her bespoke Littlest Galleries framed collage" style="object-position:50% 50%;" loading="lazy" />
+        <img class="hero-slide" src="process-1697.jpg" alt="Holding a finished framed children's art collage in a bright living room" style="object-position:50% 60%;" loading="lazy" />
       </div>
-      <div class="hero-dots" id="heroDots"><button class="hero-dot active" aria-label="Show photo 1"></button><button class="hero-dot" aria-label="Show photo 2"></button><button class="hero-dot" aria-label="Show photo 3"></button><button class="hero-dot" aria-label="Show photo 4"></button><button class="hero-dot" aria-label="Show photo 5"></button></div>
+      <div class="hero-dots" id="heroDots"><button class="hero-dot active" aria-label="Show photo 1"></button><button class="hero-dot" aria-label="Show photo 2"></button><button class="hero-dot" aria-label="Show photo 3"></button><button class="hero-dot" aria-label="Show photo 4"></button></div>
       <div class="frame-badge">Gallery Framed</div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how-it-works">
-  <div class="container">
-    <span class="section-eyebrow fade-in">The Process</span>
-    <h2 class="section-title fade-in">Simple, <em>personal,</em> beautiful</h2>
-    <p class="section-body fade-in">Every piece is made by hand, with care. Here's how it works — from your child's scribbles to a finished artwork you'll hang with pride.</p>
-    <div class="divider fade-in"></div>
-
-    <div class="steps-grid">
-      <div class="step fade-in">
-        <img class="step-photo" src="process-2330.jpg" alt="Sorting through a pile of children's artwork for a Littlest Galleries collage" style="object-position: 50% 70%;" />
-        <h3 class="step-title">1. Gather &amp; Send</h3>
-        <p class="step-body">Collect your child's drawings, paintings and handprints and post them to my London studio. Originals are always returned.</p>
-      </div>
-      <div class="step fade-in">
-        <img class="step-photo" src="process-1687.jpg" alt="Close-up of a hand-collaged children's artwork piece" />
-        <h3 class="step-title">2. Design &amp; Create</h3>
-        <p class="step-body">I hand-compose and collage your piece, picking out the most wonderful moments. No two are ever the same.</p>
-      </div>
-      <div class="step fade-in">
-        <img class="step-photo" src="process-2578.jpg" alt="Finished Littlest Galleries collage in a light oak frame on an easel" style="object-position: 50% 30%;" />
-        <h3 class="step-title">3. Delivered &amp; Displayed</h3>
-        <p class="step-body">Your piece arrives professionally framed in light oak, ready to hang and treasure for years to come.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section id="gallery">
-  <div class="container">
-    <span class="section-eyebrow fade-in">Our Work</span>
-    <h2 class="section-title fade-in">Every piece is <em>one of a kind</em></h2>
-    <p class="section-body fade-in">Each commission is as unique as the child it celebrates. Here's a glimpse at the kinds of pieces we create.</p>
-    <div class="divider fade-in"></div>
-
-    <div class="gallery-grid">
-      <div class="gallery-card fade-in">
-        <img src="IMG_8813.JPG" alt="Large bespoke children's art collage framed in light oak" style="width:100%;height:calc(100% - 40px);object-fit:cover;display:block;" />
-        <p class="gallery-label">30×40 · Mixed media collage</p>
-      </div>
-      <div class="gallery-card fade-in">
-        <img src="Athena Bayswater.jpg" alt="Bespoke children's artwork collage framed" style="width:100%;height:100%;object-fit:cover;display:block;" />
-        <p class="gallery-label">18×18 · Drawings &amp; paintings</p>
-      </div>
-      <div class="gallery-card fade-in">
-        <img src="IMG_1265.jpg" alt="Bespoke children's art collage in light oak frame on wall" style="width:100%;height:100%;object-fit:cover;display:block;" />
-        <p class="gallery-label">24×30 · Handprints &amp; handwriting</p>
-      </div>
-      <div class="gallery-card fade-in">
-        <img src="IMG_6851.jpg" alt="Colourful children's artwork collage framed" style="width:100%;height:100%;object-fit:cover;display:block;" />
-        <p class="gallery-label">24×30 · Mixed media</p>
-      </div>
-      <div class="gallery-card fade-in">
-        <img src="IMG_7825.jpg" alt="Bespoke children's art collage commission" style="width:100%;height:100%;object-fit:cover;display:block;" />
-        <p class="gallery-label">18×18 · Drawings &amp; colour</p>
-      </div>
-      <div class="gallery-card fade-in">
-        <img src="IMG_9774.jpg" alt="Littlest Galleries piece displayed outdoors" style="width:100%;height:100%;object-fit:cover;display:block;" />
-        <p class="gallery-label">30×40 · Large commission</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
+<!-- PRICING + GALLERY -->
 <section id="pricing">
-  <div class="container">
-    <span class="section-eyebrow fade-in">Pricing</span>
-    <h2 class="section-title fade-in">Investment in a <em>forever keepsake</em></h2>
-    <p class="section-body fade-in">Every piece is bespoke and made by hand from your child's own artwork. No hidden extras: framing and delivery are already in the price.</p>
+  <div class="container shop-grid">
+    <div class="shop-pricing fade-in">
+    <span class="section-eyebrow">Pricing</span>
+    <h2 class="section-title">Investment in a <em>forever keepsake</em></h2>
+    <p class="section-body">Every piece is bespoke and made by hand from your child's own artwork. No hidden extras: framing and delivery are already in the price.</p>
+    <div class="divider"></div>
 
-    <div class="price-box fade-in">
-      <h3 class="price-box-title">Collage Pricing <span style="color:var(--mid);font-weight:300;">(GBP / inches)</span></h3>
+    <div class="price-box">
+      <h3 class="price-box-title">Collage Pricing <span class="price-box-units">GBP · inches</span></h3>
       <p class="price-box-included">✓ Light oak gallery frame &nbsp;✓ Insured UK delivery &nbsp;✓ Originals returned</p>
       <ul class="price-list">
         <li class="price-row"><span class="price-size">18×18</span><span class="price-dash"></span><span class="price-framed">£446</span><span class="price-unframed">unframed £265</span></li>
@@ -879,6 +860,39 @@
         <p class="price-box-note">Need a custom size? <a href="#contact">Get in touch</a></p>
         <a href="#contact" class="btn-primary">Commission a Piece</a>
       </div>
+    </div>
+    </div>
+    <div class="shop-gallery fade-in" id="gallery">
+      <span class="section-eyebrow">Our Work</span>
+      <h2 class="section-title">Every piece is <em>one of a kind</em></h2>
+      <p class="section-body">Each commission is as unique as the child it celebrates. A few recent pieces:</p>
+      <div class="divider"></div>
+    <div class="gallery-grid">
+      <div class="gallery-card">
+        <img loading="lazy" src="IMG_8813.JPG" alt="Large bespoke children's art collage framed in light oak" />
+        <p class="gallery-label">30×40 · Mixed media collage</p>
+      </div>
+      <div class="gallery-card">
+        <img loading="lazy" src="Athena Bayswater.jpg" alt="Bespoke children's artwork collage framed" />
+        <p class="gallery-label">18×18 · Drawings &amp; paintings</p>
+      </div>
+      <div class="gallery-card">
+        <img loading="lazy" src="IMG_1265.jpg" alt="Bespoke children's art collage in light oak frame on wall" />
+        <p class="gallery-label">24×30 · Handprints &amp; handwriting</p>
+      </div>
+      <div class="gallery-card">
+        <img loading="lazy" src="IMG_6851.jpg" alt="Colourful children's artwork collage framed" />
+        <p class="gallery-label">24×30 · Mixed media</p>
+      </div>
+      <div class="gallery-card">
+        <img loading="lazy" src="IMG_7825.jpg" alt="Bespoke children's art collage commission" />
+        <p class="gallery-label">18×18 · Drawings &amp; colour</p>
+      </div>
+      <div class="gallery-card">
+        <img loading="lazy" src="IMG_9774.jpg" alt="Littlest Galleries piece displayed outdoors" />
+        <p class="gallery-label">30×40 · Large commission</p>
+      </div>
+    </div>
     </div>
   </div>
 </section>
@@ -930,6 +944,51 @@
   </div>
 </section>
 
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+  <div class="container">
+    <span class="section-eyebrow fade-in">The Process</span>
+    <h2 class="section-title fade-in">Simple, <em>personal,</em> beautiful</h2>
+    <p class="section-body fade-in">Every piece is made by hand, with care. Here's how it works — from your child's scribbles to a finished artwork you'll hang with pride.</p>
+    <div class="divider fade-in"></div>
+
+    <div class="steps-grid">
+      <div class="step fade-in">
+        <img class="step-photo" src="process-2330.jpg" alt="Sorting through a pile of children's artwork for a Littlest Galleries collage" style="object-position: 50% 70%;" />
+        <h3 class="step-title">1. Gather &amp; Send</h3>
+        <p class="step-body">Collect your child's drawings, paintings and handprints and post them to my London studio. Originals are always returned.</p>
+      </div>
+      <div class="step fade-in">
+        <img class="step-photo" src="process-1687.jpg" alt="Close-up of a hand-collaged children's artwork piece" />
+        <h3 class="step-title">2. Design &amp; Create</h3>
+        <p class="step-body">I hand-compose and collage your piece, picking out the most wonderful moments. No two are ever the same.</p>
+      </div>
+      <div class="step fade-in">
+        <img class="step-photo" src="process-2578.jpg" alt="Finished Littlest Galleries collage in a light oak frame on an easel" style="object-position: 50% 30%;" />
+        <h3 class="step-title">3. Delivered &amp; Displayed</h3>
+        <p class="step-body">Your piece arrives professionally framed in light oak, ready to hang and treasure for years to come.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image fade-in">
+        <img src="evgembliuk_photographerw2-17%20(1).JPG" alt="Brooke — founder of Littlest Galleries" />
+      </div>
+      <div class="about-content fade-in">
+        <span class="section-eyebrow">About Me</span>
+        <h2 class="section-title">The person <em>behind the piece</em></h2>
+        <div class="divider"></div>
+        <p class="about-body">I'm Brooke — an American mum of two living in London, with a lifelong love of making things. Littlest Galleries was born from a simple belief: that children's art deserves more than a drawer. Every piece I create is a hand-made collage of your child's own drawings, paintings and handprints — transformed into something gallery-worthy that your family will treasure for a lifetime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section id="faq">
   <div class="container">
@@ -965,23 +1024,6 @@
       <div class="faq-item fade-in">
         <div class="faq-q">Can I commission a piece using artwork from more than one child?</div>
         <div class="faq-a">Absolutely — sibling collages are some of my favourites. I can blend artwork from two or more children into one piece, making it an even more special family heirloom.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-image fade-in">
-        <img src="evgembliuk_photographerw2-17%20(1).JPG" alt="Brooke — founder of Littlest Galleries" />
-      </div>
-      <div class="about-content fade-in">
-        <span class="section-eyebrow">About Me</span>
-        <h2 class="section-title">The person <em>behind the piece</em></h2>
-        <div class="divider"></div>
-        <p class="about-body">I'm Brooke — an American mum of two living in London, with a lifelong love of making things. Littlest Galleries was born from a simple belief: that children's art deserves more than a drawer. Every piece I create is a hand-made collage of your child's own drawings, paintings and handprints — transformed into something gallery-worthy that your family will treasure for a lifetime.</p>
       </div>
     </div>
   </div>
