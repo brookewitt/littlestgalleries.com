@@ -730,7 +730,11 @@
     .week-tile.sold-out .week-status { color: rgba(255,255,255,0.7); }
     .availability-key { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 16px; font-weight: 300; }
     @media (max-width: 900px) {
-      .week-grid { grid-template-columns: repeat(2, 1fr); }
+      .week-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+      .week-tile { padding: 10px 4px; }
+      .week-dates { font-size: 15px; }
+      .week-status { font-size: 9px; letter-spacing: 0.08em; }
+      .week-note { font-size: 10px; }
       .week-dates { font-size: 18px; }
     }
 
@@ -1467,11 +1471,15 @@
   // To update: change the number of open spots for a week (key = the Monday of that week).
   // 0 = sold out. Weeks from REOPEN onwards default to PER_WEEK spots unless listed here.
   const AVAILABILITY = {
-    FIRST_WEEK: '2026-12-14',
+    FIRST_WEEK: '2026-11-16',
     REOPEN: '2027-01-18',
     PER_WEEK: 2,
-    WEEKS_SHOWN: 10,
+    WEEKS_SHOWN: 15,
     spots: {
+      '2026-11-16': 0,
+      '2026-11-23': 0,
+      '2026-11-30': 0,
+      '2026-12-07': 0,
       '2026-12-14': 2,
       '2026-12-21': 0,
       '2026-12-28': 0,
