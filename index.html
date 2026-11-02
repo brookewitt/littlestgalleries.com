@@ -645,6 +645,47 @@
     }
     .social-link:hover { color: white; }
 
+    /* ── AVAILABILITY ── */
+    .availability { max-width: 880px; margin: 0 auto 56px; }
+    .availability-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: white;
+      margin-bottom: 8px;
+    }
+    .availability-sub { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.55); margin-bottom: 24px; }
+    .week-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+    .week-tile {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 3px;
+      padding: 14px 8px;
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      display: flex; flex-direction: column; gap: 4px; align-items: center;
+    }
+    .week-tile:hover, .week-tile:focus-visible { border-color: var(--gold); background: rgba(201,153,58,0.1); outline: none; }
+    .week-tile.selected { border-color: var(--gold); background: rgba(201,153,58,0.18); }
+    .week-dates { font-family: 'Cormorant Garamond', serif; font-size: 20px; line-height: 1.1; }
+    .week-status { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+    .week-note { font-size: 11px; color: rgba(255,255,255,0.5); }
+    .week-tile.sold-out { cursor: default; opacity: 0.45; }
+    .week-tile.sold-out:hover { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); }
+    .week-tile.sold-out .week-status { color: rgba(255,255,255,0.7); }
+    .availability-key { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 16px; font-weight: 300; }
+    @media (max-width: 900px) {
+      .week-grid { grid-template-columns: repeat(2, 1fr); }
+      .week-dates { font-size: 18px; }
+    }
+
     /* ── INSTAGRAM POPUP ── */
     .ig-popup {
       display: none;
@@ -821,7 +862,7 @@
     <ul class="trust-strip">
       <li>Framing &amp; UK delivery included</li>
       <li>Originals returned safely</li>
-      <li>Sent back within 2 weeks</li>
+      <li>Choose your delivery week</li>
     </ul>
   </div>
   <div class="hero-right fade-in">
@@ -1007,7 +1048,7 @@
       </div>
       <div class="faq-item fade-in">
         <div class="faq-q">How long does it take?</div>
-        <div class="faq-a">Once I receive your artwork, your finished piece will be on its way back to you within 2 weeks. Delivery across the UK is fully insured and included in the price.</div>
+        <div class="faq-a">Each commission is booked into a delivery week. You can see which weeks are open in the availability calendar at the bottom of this page and choose one when you enquire. Please post your artwork so it reaches me at least 2 weeks before your delivery week. Delivery across the UK is fully insured and included in the price.</div>
       </div>
       <div class="faq-item fade-in">
         <div class="faq-q">What sizes are available and what do they cost?</div>
@@ -1036,6 +1077,13 @@
     <h2 class="section-title fade-in">Ready to create <em>something beautiful?</em></h2>
     <div class="divider"></div>
     <p class="section-body fade-in" style="margin:0 auto 56px;">Fill in the form below to tell me about your little artist — I'll get back to you as soon as possible.</p>
+
+    <div class="availability fade-in" id="availability">
+      <h3 class="availability-title">Commission availability</h3>
+      <p class="availability-sub">Each commission is booked into a delivery week. Pick an open week below or in the form.</p>
+      <div class="week-grid" id="weekGrid"></div>
+      <p class="availability-key">Spots are limited each week and go on a first come, first served basis.</p>
+    </div>
 
     <div class="contact-form-wrap fade-in">
       <form action="https://formspree.io/f/mkoejjpk" method="POST" class="contact-form">
@@ -1067,6 +1115,16 @@
             <option value="36x48 Framed (£1,190)">36×48 inches — Framed £1,190</option>
             <option value="36x48 Unframed (£745)">36×48 inches — Unframed £745</option>
             <option value="Custom / Not sure yet">Custom size / Not sure yet</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="delivery_week">When would you like it delivered? *</label>
+          <select id="delivery_week" name="delivery_week" required>
+            <option value="" disabled selected>Select a delivery week</option>
+            <option value="Week of 14 Dec 2026">14–18 Dec (Christmas, 2 spots left)</option>
+            <option value="Week of 18 Jan 2027">18–22 Jan onwards</option>
+            <option value="Flexible">I'm flexible: any open week</option>
           </select>
         </div>
 
@@ -1170,6 +1228,85 @@
       popup.style.display = 'flex';
     }, 4000);
   }
+</script>
+
+<script>
+  // ── Commission availability ──
+  // To update: change the number of open spots for a week (key = the Monday of that week).
+  // 0 = sold out. Weeks from REOPEN onwards default to PER_WEEK spots unless listed here.
+  const AVAILABILITY = {
+    FIRST_WEEK: '2026-12-14',
+    REOPEN: '2027-01-18',
+    PER_WEEK: 2,
+    WEEKS_SHOWN: 10,
+    spots: {
+      '2026-12-14': 2,
+      '2026-12-21': 0,
+      '2026-12-28': 0,
+      '2027-01-04': 0,
+      '2027-01-11': 0
+    },
+    notes: { '2026-12-14': 'In time for Christmas' }
+  };
+  (function () {
+    const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const iso = d => d.toISOString().slice(0, 10);
+    const parse = s => new Date(s + 'T00:00:00Z');
+    const addDays = (d, n) => new Date(d.getTime() + n * 86400000);
+    const now = new Date();
+    const today = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+    const thisMonday = addDays(today, -((today.getUTCDay() + 6) % 7));
+    let start = parse(AVAILABILITY.FIRST_WEEK);
+    if (thisMonday > start) start = thisMonday;
+    const reopen = parse(AVAILABILITY.REOPEN);
+    const weeks = [];
+    for (let i = 0; i < AVAILABILITY.WEEKS_SHOWN; i++) {
+      const mon = addDays(start, i * 7), fri = addDays(mon, 4), key = iso(mon);
+      let spots = AVAILABILITY.spots[key];
+      if (spots === undefined) spots = mon >= reopen ? AVAILABILITY.PER_WEEK : 0;
+      const sameMonth = mon.getUTCMonth() === fri.getUTCMonth();
+      const label = sameMonth
+        ? mon.getUTCDate() + '–' + fri.getUTCDate() + ' ' + MONTHS[fri.getUTCMonth()]
+        : mon.getUTCDate() + ' ' + MONTHS[mon.getUTCMonth()] + '–' + fri.getUTCDate() + ' ' + MONTHS[fri.getUTCMonth()];
+      const value = 'Week of ' + mon.getUTCDate() + ' ' + MONTHS[mon.getUTCMonth()] + ' ' + mon.getUTCFullYear();
+      weeks.push({ key, label, value, spots, note: AVAILABILITY.notes[key] || '' });
+    }
+    const status = w => w.spots <= 0 ? 'Sold out' : w.spots === 1 ? '1 spot left' : w.spots + ' spots left';
+
+    const select = document.getElementById('delivery_week');
+    const grid = document.getElementById('weekGrid');
+    if (!select || !grid) return;
+
+    select.innerHTML = '<option value="" disabled selected>Select a delivery week</option>';
+    weeks.forEach(w => {
+      const o = document.createElement('option');
+      o.value = w.value;
+      o.textContent = w.label + ' (' + status(w).toLowerCase() + ')';
+      if (w.spots <= 0) o.disabled = true;
+      select.appendChild(o);
+    });
+    const flex = document.createElement('option');
+    flex.value = 'Flexible'; flex.textContent = "I'm flexible: any open week";
+    select.appendChild(flex);
+
+    weeks.forEach(w => {
+      const t = document.createElement(w.spots > 0 ? 'button' : 'div');
+      t.className = 'week-tile' + (w.spots <= 0 ? ' sold-out' : '');
+      if (w.spots > 0) { t.type = 'button'; t.setAttribute('aria-label', 'Choose delivery week ' + w.label); }
+      t.dataset.value = w.value;
+      t.innerHTML = '<span class="week-dates">' + w.label + '</span><span class="week-status">' + status(w) + '</span>' +
+        (w.note ? '<span class="week-note">' + w.note + '</span>' : '');
+      if (w.spots > 0) t.addEventListener('click', () => {
+        select.value = w.value;
+        select.dispatchEvent(new Event('change'));
+        select.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+      grid.appendChild(t);
+    });
+    select.addEventListener('change', () => {
+      grid.querySelectorAll('.week-tile').forEach(t => t.classList.toggle('selected', t.dataset.value === select.value));
+    });
+  })();
 </script>
 
 </body>
