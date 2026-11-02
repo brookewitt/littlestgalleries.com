@@ -565,6 +565,35 @@
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
     }
 
+    /* ── MEET BROOKE ── */
+    #about { padding: 88px 0; }
+    .meet-grid { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 72px; align-items: center; max-width: 980px; margin: 0 auto; }
+    .meet-video { position: relative; width: 100%; aspect-ratio: 9 / 16; max-width: 100%; background: #2a2622; border: 10px solid white; outline: 1px solid var(--border); box-shadow: 16px 16px 48px rgba(28,24,18,0.14); }
+    .meet-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .meet-sound {
+      position: absolute; right: 12px; top: 12px;
+      background: rgba(28,24,18,0.72); color: white; border: none; border-radius: 99px;
+      padding: 8px 14px; font-family: 'DM Sans', sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
+    }
+    .meet-sound:hover, .meet-sound:focus-visible { background: var(--rust); outline: none; }
+    .meet-more { margin-top: 16px; }
+    .meet-sign { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 30px; color: var(--rust); margin-top: 20px; }
+    @media (max-width: 900px) {
+      #about { padding: 56px 0; }
+      .meet-grid { grid-template-columns: minmax(0, 46%) minmax(0, 1fr); column-gap: 20px; align-items: start; }
+      .meet-grid { grid-template-areas: "video intro" "more more"; row-gap: 20px; }
+      .meet-content { display: contents; }
+      .meet-video { grid-area: video; }
+      .meet-intro { grid-area: intro; }
+      .meet-more { grid-area: more; }
+      .meet-video { border-width: 6px; }
+      .meet-sound { right: 6px; top: 6px; padding: 5px 9px; font-size: 10px; }
+      .meet-content .section-title { font-size: 32px; }
+      .meet-content .divider { margin: 16px 0; }
+      .meet-content .about-body { font-size: 15px; line-height: 1.65; }
+      .meet-sign { font-size: 24px; margin-top: 10px; }
+    }
+
     /* ── CONTACT FORM ── */
     .contact-form-wrap {
       max-width: 680px;
@@ -967,11 +996,11 @@
 <nav>
   <a class="nav-logo" href="#home">Littlest Galleries</a>
   <ul class="nav-links">
+    <li><a href="#about">About</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#how-it-works">How It Works</a></li>
-    <li><a href="#about">About</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact" class="nav-cta">Commission a Piece</a></li>
   </ul>
@@ -983,11 +1012,11 @@
 <div class="mobile-menu">
   <button class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('open')">✕</button>
   <a href="#home" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Home</a>
+  <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('open')">About</a>
   <a href="#pricing" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Pricing</a>
   <a href="#gallery" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Gallery</a>
   <a href="#reviews" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Reviews</a>
   <a href="#how-it-works" onclick="document.querySelector('.mobile-menu').classList.remove('open')">How It Works</a>
-  <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('open')">About</a>
   <a href="#faq" onclick="document.querySelector('.mobile-menu').classList.remove('open')">FAQ</a>
   <a href="#contact" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Commission a Piece</a>
 </div>
@@ -1022,6 +1051,30 @@
       </div>
       <div class="hero-dots" id="heroDots"><button class="hero-dot active" aria-label="Show photo 1"></button><button class="hero-dot" aria-label="Show photo 2"></button><button class="hero-dot" aria-label="Show photo 3"></button><button class="hero-dot" aria-label="Show photo 4"></button></div>
       <div class="frame-badge">Gallery Framed</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="meet-grid">
+      <div class="meet-video fade-in">
+        <video id="introVideo" src="brooke-intro.mp4" poster="brooke-intro-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Brooke introducing Littlest Galleries and making a collage"></video>
+        <button type="button" class="meet-sound" id="introSound" aria-pressed="false">Sound on</button>
+      </div>
+      <div class="meet-content fade-in">
+        <div class="meet-intro">
+        <span class="section-eyebrow">About Me</span>
+        <h2 class="section-title">Hi, I'm <em>Brooke</em></h2>
+        <div class="divider"></div>
+        <p class="about-body">I'm an American mum of two living in London, with a lifelong love of making things. Littlest Galleries was born from a simple belief: children's art deserves more than a drawer.</p>
+        </div>
+        <div class="meet-more">
+        <p class="about-body">Every piece I create is a hand-made collage of your child's own drawings, paintings and handprints, transformed into something gallery-worthy that your family will treasure for a lifetime.</p>
+        <p class="meet-sign">Brooke</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1268,23 +1321,6 @@
     <div class="social-links" style="margin-top:64px;">
       <a class="social-link" href="https://www.instagram.com/thelittlestgalleries" target="_blank" rel="noopener">Instagram</a>
       <a class="social-link" href="https://www.tiktok.com/@littlestgalleries" target="_blank" rel="noopener">TikTok</a>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-image fade-in">
-        <img src="evgembliuk_photographerw2-17%20(1).JPG" alt="Brooke — founder of Littlest Galleries" />
-      </div>
-      <div class="about-content fade-in">
-        <span class="section-eyebrow">About Me</span>
-        <h2 class="section-title">The person <em>behind the piece</em></h2>
-        <div class="divider"></div>
-        <p class="about-body">I'm Brooke — an American mum of two living in London, with a lifelong love of making things. Littlest Galleries was born from a simple belief: that children's art deserves more than a drawer. Every piece I create is a hand-made collage of your child's own drawings, paintings and handprints — transformed into something gallery-worthy that your family will treasure for a lifetime.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -1612,6 +1648,18 @@
     check();
     window.addEventListener('resize', check);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(check);
+  })();
+  // ── Intro video ──
+  (function () {
+    const v = document.getElementById('introVideo'), btn = document.getElementById('introSound');
+    if (!v || !btn) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; }
+    btn.addEventListener('click', () => {
+      v.muted = !v.muted;
+      if (!v.muted) { v.currentTime = 0; v.play().catch(() => {}); }
+      btn.textContent = v.muted ? 'Sound on' : 'Sound off';
+      btn.setAttribute('aria-pressed', String(!v.muted));
+    });
   })();
 </script>
 
