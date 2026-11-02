@@ -614,6 +614,10 @@
       font-weight: 300;
     }
     .form-note a { color: var(--gold); text-decoration: none; }
+    .form-deposit-note { font-size: 13px; color: rgba(255,255,255,0.6); text-align: center; font-weight: 300; line-height: 1.6; margin-top: -8px; }
+    .form-status { font-size: 15px; color: white; text-align: center; line-height: 1.6; }
+    .form-status a { color: var(--gold); }
+    .form-submit:disabled { opacity: 0.6; cursor: wait; transform: none; }
     @media (max-width: 900px) {
       .contact-form-wrap { padding: 32px 24px; }
       .form-row { grid-template-columns: 1fr; }
@@ -1090,7 +1094,8 @@
     </div>
 
     <div class="contact-form-wrap fade-in">
-      <form action="https://formspree.io/f/mkoejjpk" method="POST" class="contact-form">
+      <form action="https://formspree.io/f/mkoejjpk" method="POST" class="contact-form" id="commissionForm">
+        <input type="hidden" name="payment" id="paymentField" value="Enquiry only" />
 
         <div class="form-row">
           <div class="form-group">
@@ -1137,7 +1142,9 @@
           <textarea id="message" name="message" rows="4" placeholder="Their name, age, what kind of artwork they make, any special occasion..."></textarea>
         </div>
 
-        <button type="submit" class="form-submit">Send Request</button>
+        <button type="submit" class="form-submit" id="formSubmit">Send Request</button>
+        <p class="form-deposit-note" id="depositNote" hidden>You'll be taken to Tide's secure checkout to pay your 75% deposit. Once it's received, I'll email you my studio address and where to send the artwork. The remaining 25% is due before dispatch.</p>
+        <p class="form-status" id="formStatus" role="status" hidden></p>
 
         <p class="form-note">I aim to respond within 24–48 hours. You can also reach me at <a href="mailto:brooke@littlestgalleries.com">brooke@littlestgalleries.com</a></p>
       </form>
@@ -1309,6 +1316,55 @@
     });
     select.addEventListener('change', () => {
       grid.querySelectorAll('.week-tile').forEach(t => t.classList.toggle('selected', t.dataset.value === select.value));
+    });
+  })();
+  // ── Deposit checkout (Tide Instant Checkout) ──
+  // Paste each Tide checkout link next to its size. Sizes with no link stay as an enquiry only.
+  const DEPOSIT_LINKS = {
+    '24x30 Framed (£750)':   { deposit: '£562.50', url: 'https://pay.tide.co/products/2430-framed-Amuoxnaa' },
+    '24x30 Unframed (£445)': { deposit: '£333.75', url: '' },
+    '30x40 Framed (£980)':   { deposit: '£735.00', url: '' },
+    '30x40 Unframed (£590)': { deposit: '£442.50', url: '' },
+    '36x48 Framed (£1,190)': { deposit: '£892.50', url: '' },
+    '36x48 Unframed (£745)': { deposit: '£558.75', url: '' }
+  };
+  (function () {
+    const form = document.getElementById('commissionForm');
+    if (!form) return;
+    const size = document.getElementById('size');
+    const btn = document.getElementById('formSubmit');
+    const note = document.getElementById('depositNote');
+    const status = document.getElementById('formStatus');
+    const payField = document.getElementById('paymentField');
+    const linkFor = () => { const d = DEPOSIT_LINKS[size.value]; return d && d.url ? d : null; };
+    const update = () => {
+      const d = linkFor();
+      btn.textContent = d ? 'Book & pay ' + d.deposit + ' deposit' : 'Send Request';
+      note.hidden = !d;
+      payField.value = d ? 'Sent to Tide checkout for ' + d.deposit + ' deposit' : 'Enquiry only';
+    };
+    size.addEventListener('change', update);
+    update();
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const d = linkFor();
+      btn.disabled = true;
+      btn.textContent = d ? 'Taking you to checkout…' : 'Sending…';
+      let ok = false;
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        ok = res.ok;
+      } catch (err) { ok = false; }
+      if (d) { window.location.href = d.url; return; }
+      status.hidden = false;
+      if (ok) {
+        form.querySelectorAll('.form-group, .form-row, #formSubmit, .form-note').forEach(el => el.style.display = 'none');
+        status.innerHTML = 'Thank you! Your request has been sent. I aim to reply within 24–48 hours.';
+      } else {
+        btn.disabled = false; update();
+        status.innerHTML = 'Sorry, something went wrong sending your request. Please try again or email <a href="mailto:brooke@littlestgalleries.com">brooke@littlestgalleries.com</a>.';
+      }
     });
   })();
 </script>
