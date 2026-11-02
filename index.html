@@ -449,9 +449,20 @@
       gap: 28px;
       margin-top: 64px;
     }
+    #reviews { background: #b9a48f url('reviews-art.jpg') center / cover no-repeat; }
+    .reviews-head {
+      background: #fffdf9;
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 40px 32px 32px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(28,24,18,0.2);
+    }
+    .reviews-head .divider { margin: 20px auto 0; }
     .review-card {
       flex: 0 1 calc((100% - 56px) / 3);
-      background: var(--warm);
+      background: #fffdf9;
+      box-shadow: 0 16px 40px rgba(28,24,18,0.18);
       padding: 36px;
       border-left: 3px solid var(--rust);
     }
@@ -1023,9 +1034,11 @@
 <!-- REVIEWS -->
 <section id="reviews">
   <div class="container">
-    <span class="section-eyebrow fade-in">Reviews</span>
-    <h2 class="section-title fade-in">What families <em>are saying</em></h2>
-    <div class="divider fade-in"></div>
+    <div class="reviews-head">
+      <span class="section-eyebrow">Reviews</span>
+      <h2 class="section-title">What families <em>are saying</em></h2>
+      <div class="divider"></div>
+    </div>
 
     <div class="reviews-grid">
       <div class="review-card fade-in">
