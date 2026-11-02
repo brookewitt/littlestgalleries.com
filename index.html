@@ -100,16 +100,17 @@
 
     /* ── HERO ── */
     #home {
-      min-height: 100vh;
+      min-height: auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
       padding-top: 80px;
+      padding-bottom: 0;
     }
     .hero-left {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 80px 64px 80px 80px;
+      padding: 64px 64px 64px 80px;
     }
     .hero-eyebrow {
       font-size: 11px;
@@ -170,6 +171,7 @@
 
     .hero-right {
       background: var(--warm);
+      padding: 56px 40px;
       position: relative;
       overflow: hidden;
       display: flex;
@@ -690,6 +692,52 @@
       .week-dates { font-size: 18px; }
     }
 
+    /* ── SOFT CONTACT SECTION ── */
+    #contact { background: #f3e6dc; color: var(--ink); }
+    #contact .section-title { color: var(--ink); }
+    #contact .section-body { color: var(--mid); }
+    #contact .divider { background: var(--rust); }
+    #contact .contact-form-wrap { background: #fffdf9; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(28,24,18,0.06); }
+    #contact .form-group label { color: #5d544b; }
+    #contact .form-group input, #contact .form-group select, #contact .form-group textarea { background: var(--cream); border: 1px solid rgba(28,24,18,0.15); color: var(--ink); }
+    #contact .form-group input::placeholder, #contact .form-group textarea::placeholder { color: rgba(28,24,18,0.35); }
+    #contact .form-group select option { background: white; color: var(--ink); }
+    #contact .form-group input:focus, #contact .form-group select:focus, #contact .form-group textarea:focus { border-color: var(--rust); }
+    #contact .form-note, #contact .form-deposit-note { color: var(--mid); }
+    #contact .form-note a, #contact .form-status a { color: var(--rust); }
+    #contact .form-status { color: var(--ink); }
+    #contact .availability-title { color: var(--ink); }
+    #contact .availability-sub, #contact .availability-key, #contact .week-note { color: var(--mid); }
+    #contact .week-tile { background: #fffdf9; border: 1px solid rgba(28,24,18,0.12); color: var(--ink); }
+    #contact .week-tile:hover, #contact .week-tile:focus-visible { border-color: var(--rust); background: rgba(184,76,42,0.06); }
+    #contact .week-tile.selected { border-color: var(--rust); background: rgba(184,76,42,0.1); }
+    #contact .week-status { color: var(--rust); }
+    #contact .week-tile.sold-out { opacity: 0.5; }
+    #contact .week-tile.sold-out:hover { border-color: rgba(28,24,18,0.12); background: #fffdf9; }
+    #contact .week-tile.sold-out .week-status { color: var(--mid); }
+    #contact .social-link { color: var(--mid); }
+    #contact .social-link:hover { color: var(--rust); }
+
+    /* ── LIGHTBOX ── */
+    .lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(20,17,13,0.94); display: flex; align-items: center; justify-content: center; padding: 56px 72px; }
+    .lightbox[hidden] { display: none; }
+    .lightbox figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; max-width: 100%; max-height: 100%; }
+    .lightbox img { max-width: min(92vw, 900px); max-height: calc(100vh - 160px); object-fit: contain; border-radius: 2px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+    .lightbox figcaption { color: rgba(255,255,255,0.75); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; text-align: center; }
+    .lb-btn { position: absolute; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; width: 48px; height: 48px; border-radius: 50%; font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .lb-btn:hover, .lb-btn:focus-visible { background: rgba(255,255,255,0.22); outline: none; }
+    .lb-prev { left: 20px; top: 50%; transform: translateY(-50%); }
+    .lb-next { right: 20px; top: 50%; transform: translateY(-50%); }
+    .lb-close { top: 16px; right: 16px; width: 44px; height: 44px; font-size: 20px; }
+    .lb-count { position: absolute; top: 28px; left: 24px; color: rgba(255,255,255,0.55); font-size: 12px; letter-spacing: 0.14em; }
+    @media (max-width: 900px) {
+      .lightbox { padding: 64px 12px 96px; }
+      .lightbox img { max-height: calc(100vh - 220px); }
+      .lb-prev, .lb-next { top: auto; bottom: 24px; transform: none; }
+      .lb-prev { left: calc(50% - 64px); }
+      .lb-next { right: calc(50% - 64px); }
+    }
+
     /* ── INSTAGRAM POPUP ── */
     .ig-popup {
       display: none;
@@ -765,8 +813,8 @@
 
     /* ── FOOTER ── */
     footer {
-      background: #0e0d0b;
-      color: rgba(255,255,255,0.3);
+      background: var(--warm);
+      color: var(--mid);
       text-align: center;
       padding: 28px;
       font-size: 12px;
@@ -858,7 +906,7 @@
     </div>
     <p class="hero-eyebrow">Bespoke Children's Artwork · UK</p>
     <h1 class="hero-title">Your child's art, <em>gallery-worthy</em> forever</h1>
-    <p class="hero-subtitle">We take your little one's drawings, paintings, handprints and handwriting and transform them into a stunning, professionally framed collage — a keepsake they'll treasure for life.</p>
+    <p class="hero-subtitle">I take your little one's drawings, paintings, handprints and handwriting and transform them into a stunning, professionally framed collage — a keepsake they'll treasure for life.</p>
     <div class="hero-buttons">
       <a href="#contact" class="btn-primary">Commission a Piece</a>
       <a href="#pricing" class="btn-ghost">View Pricing</a>
@@ -1017,71 +1065,10 @@
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-image fade-in">
-        <img src="evgembliuk_photographerw2-17%20(1).JPG" alt="Brooke — founder of Littlest Galleries" />
-      </div>
-      <div class="about-content fade-in">
-        <span class="section-eyebrow">About Me</span>
-        <h2 class="section-title">The person <em>behind the piece</em></h2>
-        <div class="divider"></div>
-        <p class="about-body">I'm Brooke — an American mum of two living in London, with a lifelong love of making things. Littlest Galleries was born from a simple belief: that children's art deserves more than a drawer. Every piece I create is a hand-made collage of your child's own drawings, paintings and handprints — transformed into something gallery-worthy that your family will treasure for a lifetime.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <span class="section-eyebrow fade-in">FAQ</span>
-    <h2 class="section-title fade-in">Questions <em>answered</em></h2>
-    <div class="divider fade-in"></div>
-
-    <div class="faq-list">
-      <div class="faq-item fade-in">
-        <div class="faq-q">What kind of artwork can I send?</div>
-        <div class="faq-a">Any artwork your child has created — paintings, drawings, crayon scribbles, watercolours, felt-tip creations, and mixed media all work beautifully. The more varied the pieces, the richer the final collage. I work with 30–60 individual pieces per commission.</div>
-      </div>
-      <div class="faq-item fade-in">
-        <div class="faq-q">How do I send the artwork to you?</div>
-        <div class="faq-a">Once your 75% deposit has been received, I'll email you my London studio address and instructions on how to send your child's artwork.</div>
-      </div>
-      <div class="faq-item fade-in">
-        <div class="faq-q">How does payment work?</div>
-        <div class="faq-a">A 75% deposit secures your delivery week. Once it's received, I'll email you my studio address and where to send the artwork. The remaining 25% is due before your finished piece is dispatched. Please note the deposit becomes non-refundable once your artwork arrives at my studio.</div>
-      </div>
-      <div class="faq-item fade-in">
-        <div class="faq-q">How long does it take?</div>
-        <div class="faq-a">Each commission is booked into a delivery week. You can see which weeks are open in the availability calendar at the bottom of this page and choose one when you enquire. Please post your artwork so it reaches me at least 2 weeks before your delivery week. Delivery across the UK is fully insured and included in the price.</div>
-      </div>
-      <div class="faq-item fade-in">
-        <div class="faq-q">What sizes are available and what do they cost?</div>
-        <div class="faq-a">I offer three sizes: 24×30" (£750), 30×40" (£980) and 36×48" (£1,190). All prices include professional framing in a light-oak floating frame and insured UK delivery. Unframed options are also available. There are no hidden costs.</div>
-      </div>
-      <div class="faq-item fade-in">
-        <div class="faq-q">Is this a good gift idea?</div>
-        <div class="faq-a">It's one of the most personal gifts you can give — and one that lasts a lifetime. Customers have commissioned pieces as Christmas gifts, birthday presents, and Mother's Day gifts for grandparents. Every piece is completely unique because it's made from your child's own artwork.</div>
-      </div>
-      <div class="faq-item fade-in">
-        <div class="faq-q">Do you ship outside the UK?</div>
-        <div class="faq-a">Currently I specialise in UK commissions, as this keeps delivery safe and insured. If you're based outside the UK and would like to commission a piece, please get in touch and I'll do my best to help.</div>
-      </div>
-      <div class="faq-item fade-in">
-        <div class="faq-q">Can I commission a piece using artwork from more than one child?</div>
-        <div class="faq-a">Absolutely — sibling collages are some of my favourites. I can blend artwork from two or more children into one piece, making it an even more special family heirloom.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
-    <span class="section-eyebrow" style="color:var(--gold)">Commission a Piece</span>
+    <span class="section-eyebrow" style="color:var(--rust)">Commission a Piece</span>
     <h2 class="section-title fade-in">Ready to create <em>something beautiful?</em></h2>
     <div class="divider"></div>
     <p class="section-body fade-in" style="margin:0 auto 56px;">Fill in the form below to tell me about your little artist — I'll get back to you as soon as possible.</p>
@@ -1157,9 +1144,79 @@
   </div>
 </section>
 
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image fade-in">
+        <img src="evgembliuk_photographerw2-17%20(1).JPG" alt="Brooke — founder of Littlest Galleries" />
+      </div>
+      <div class="about-content fade-in">
+        <span class="section-eyebrow">About Me</span>
+        <h2 class="section-title">The person <em>behind the piece</em></h2>
+        <div class="divider"></div>
+        <p class="about-body">I'm Brooke — an American mum of two living in London, with a lifelong love of making things. Littlest Galleries was born from a simple belief: that children's art deserves more than a drawer. Every piece I create is a hand-made collage of your child's own drawings, paintings and handprints — transformed into something gallery-worthy that your family will treasure for a lifetime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <span class="section-eyebrow fade-in">FAQ</span>
+    <h2 class="section-title fade-in">Questions <em>answered</em></h2>
+    <div class="divider fade-in"></div>
+
+    <div class="faq-list">
+      <div class="faq-item fade-in">
+        <div class="faq-q">What kind of artwork can I send?</div>
+        <div class="faq-a">Any artwork your child has created — paintings, drawings, crayon scribbles, watercolours, felt-tip creations, and mixed media all work beautifully. The more varied the pieces, the richer the final collage. I work with 30–60 individual pieces per commission.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">How do I send the artwork to you?</div>
+        <div class="faq-a">Once your 75% deposit has been received, I'll email you my London studio address and instructions on how to send your child's artwork.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">How does payment work?</div>
+        <div class="faq-a">A 75% deposit secures your delivery week. Once it's received, I'll email you my studio address and where to send the artwork. The remaining 25% is due before your finished piece is dispatched. Please note the deposit becomes non-refundable once your artwork arrives at my studio.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">How long does it take?</div>
+        <div class="faq-a">Each commission is booked into a delivery week. You can see which weeks are open in the availability calendar in the Commission a Piece section and choose one when you enquire. Please post your artwork so it reaches me at least 2 weeks before your delivery week. Delivery across the UK is fully insured and included in the price.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">What sizes are available and what do they cost?</div>
+        <div class="faq-a">I offer three sizes: 24×30" (£750), 30×40" (£980) and 36×48" (£1,190). All prices include professional framing in a light-oak floating frame and insured UK delivery. Unframed options are also available. There are no hidden costs.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">Is this a good gift idea?</div>
+        <div class="faq-a">It's one of the most personal gifts you can give — and one that lasts a lifetime. Customers have commissioned pieces as Christmas gifts, birthday presents, and Mother's Day gifts for grandparents. Every piece is completely unique because it's made from your child's own artwork.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">Do you ship outside the UK?</div>
+        <div class="faq-a">Currently I specialise in UK commissions, as this keeps delivery safe and insured. If you're based outside the UK and would like to commission a piece, please get in touch and I'll do my best to help.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">Can I commission a piece using artwork from more than one child?</div>
+        <div class="faq-a">Absolutely — sibling collages are some of my favourites. I can blend artwork from two or more children into one piece, making it an even more special family heirloom.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <p>© 2026 Littlest Galleries · All rights reserved · littlestgalleries.com</p>
 </footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery photo viewer" hidden>
+  <span class="lb-count" id="lbCount"></span>
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous photo">‹</button>
+  <figure><img id="lbImg" src="" alt="" /><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Next photo">›</button>
+</div>
 
 <!-- INSTAGRAM POPUP -->
 <div class="ig-popup" id="igPopup">
@@ -1365,6 +1422,44 @@
         btn.disabled = false; update();
         status.innerHTML = 'Sorry, something went wrong sending your request. Please try again or email <a href="mailto:brooke@littlestgalleries.com">brooke@littlestgalleries.com</a>.';
       }
+    });
+  })();
+  // ── Gallery lightbox ──
+  (function () {
+    const cards = Array.from(document.querySelectorAll('#gallery .gallery-card'));
+    const box = document.getElementById('lightbox');
+    if (!cards.length || !box) return;
+    const img = document.getElementById('lbImg'), cap = document.getElementById('lbCap'), count = document.getElementById('lbCount');
+    const items = cards.map(c => ({ src: c.querySelector('img').getAttribute('src'), alt: c.querySelector('img').alt, label: c.querySelector('.gallery-label').textContent }));
+    let i = 0, lastFocus = null;
+    const show = n => {
+      i = (n + items.length) % items.length;
+      img.src = items[i].src; img.alt = items[i].alt; cap.textContent = items[i].label;
+      count.textContent = (i + 1) + ' / ' + items.length;
+    };
+    const open = n => { lastFocus = document.activeElement; show(n); box.hidden = false; document.body.style.overflow = 'hidden'; document.getElementById('lbClose').focus(); };
+    const close = () => { box.hidden = true; document.body.style.overflow = ''; if (lastFocus) lastFocus.focus(); };
+    cards.forEach((c, n) => {
+      c.setAttribute('tabindex', '0'); c.setAttribute('role', 'button'); c.setAttribute('aria-label', 'View larger: ' + items[n].label);
+      c.addEventListener('click', () => open(n));
+      c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(n); } });
+    });
+    document.getElementById('lbPrev').addEventListener('click', () => show(i - 1));
+    document.getElementById('lbNext').addEventListener('click', () => show(i + 1));
+    document.getElementById('lbClose').addEventListener('click', close);
+    box.addEventListener('click', e => { if (e.target === box) close(); });
+    document.addEventListener('keydown', e => {
+      if (box.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') show(i - 1);
+      else if (e.key === 'ArrowRight') show(i + 1);
+    });
+    let x0 = null;
+    box.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener('touchend', e => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
     });
   })();
 </script>
