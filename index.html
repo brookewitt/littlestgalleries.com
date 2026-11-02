@@ -408,7 +408,8 @@
       font-family: 'Fraunces', Georgia, serif;
     }
     .price-row:last-child { border-bottom: none; }
-    .price-size { font-size: 26px; font-weight: 600; min-width: 110px; }
+    .price-size { font-size: 26px; font-weight: 600; min-width: 130px; display: flex; flex-direction: column; line-height: 1.15; }
+    .price-pieces { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 400; color: var(--mid); letter-spacing: 0.02em; margin-top: 4px; }
     .price-dash { flex: 1; border-bottom: 1px dotted rgba(28,24,18,0.25); transform: translateY(-6px); }
     .price-framed { font-size: 26px; font-weight: 600; color: var(--rust); }
     .price-unframed {
@@ -619,6 +620,7 @@
     .form-deposit-note { font-size: 13px; color: rgba(255,255,255,0.6); text-align: center; font-weight: 300; line-height: 1.6; margin-top: -8px; }
     .form-status { font-size: 15px; color: white; text-align: center; line-height: 1.6; }
     .form-status a { color: var(--gold); }
+    .form-deposit-note a { color: inherit; text-decoration: underline; }
     .form-submit:disabled { opacity: 0.6; cursor: wait; transform: none; }
     @media (max-width: 900px) {
       .contact-form-wrap { padding: 32px 24px; }
@@ -718,6 +720,32 @@
     #contact .social-link { color: var(--mid); }
     #contact .social-link:hover { color: var(--rust); }
 
+    /* ── ART BAND ── */
+    #contact { padding-top: 0; }
+    .art-band {
+      background: #d9c7b8 url('art-band.jpg') center / cover no-repeat;
+      padding-block: 88px;
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px));
+      margin-bottom: 72px;
+      display: flex;
+      justify-content: center;
+    }
+    .art-band-card {
+      background: #fffdf9;
+      max-width: 760px;
+      width: 100%;
+      padding: 48px 40px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(28,24,18,0.18);
+    }
+    #contact .art-band-card .section-body { margin: 0 auto; max-width: 520px; }
+    #contact .art-band-card .divider { margin: 24px auto; }
+    @media (max-width: 900px) {
+      .art-band { padding-block: 48px; margin-bottom: 48px; }
+      .art-band-card { padding: 32px 20px; }
+    }
+
     /* ── LIGHTBOX ── */
     .lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(20,17,13,0.94); display: flex; align-items: center; justify-content: center; padding: 56px 72px; }
     .lightbox[hidden] { display: none; }
@@ -812,6 +840,8 @@
     }
 
     /* ── FOOTER ── */
+    footer a { color: inherit; }
+    footer a:hover { color: var(--rust); }
     footer {
       background: var(--warm);
       color: var(--mid);
@@ -944,9 +974,9 @@
       <h3 class="price-box-title">Collage Pricing <span class="price-box-units">GBP · inches</span></h3>
       <p class="price-box-included">✓ Light oak gallery frame &nbsp;✓ Insured UK delivery &nbsp;✓ Originals returned</p>
       <ul class="price-list">
-        <li class="price-row"><span class="price-size">24×30</span><span class="price-dash"></span><span class="price-framed">£750</span><span class="price-unframed">unframed £445</span></li>
-        <li class="price-row"><span class="price-size">30×40</span><span class="price-dash"></span><span class="price-framed">£980</span><span class="price-unframed">unframed £590</span></li>
-        <li class="price-row"><span class="price-size">36×48</span><span class="price-dash"></span><span class="price-framed">£1,190</span><span class="price-unframed">unframed £745</span></li>
+        <li class="price-row"><span class="price-size">24×30<span class="price-pieces">40+ pieces of art</span></span><span class="price-dash"></span><span class="price-framed">£750</span><span class="price-unframed">unframed £445</span></li>
+        <li class="price-row"><span class="price-size">30×40<span class="price-pieces">50+ pieces of art</span></span><span class="price-dash"></span><span class="price-framed">£980</span><span class="price-unframed">unframed £590</span></li>
+        <li class="price-row"><span class="price-size">36×48<span class="price-pieces">60+ pieces of art</span></span><span class="price-dash"></span><span class="price-framed">£1,190</span><span class="price-unframed">unframed £745</span></li>
       </ul>
       <div class="price-box-footer">
         <p class="price-box-note">75% deposit to book, 25% before dispatch. Need a custom size? <a href="#contact">Get in touch</a></p>
@@ -1067,11 +1097,15 @@
 
 <!-- CONTACT -->
 <section id="contact">
+  <div class="art-band" role="img" aria-label="Close-up of a children's art collage with a rabbit, lighthouse and rainbow">
+    <div class="art-band-card">
+      <span class="section-eyebrow" style="color:var(--rust)">Commission a Piece</span>
+      <h2 class="section-title">Ready to create <em>something beautiful?</em></h2>
+      <div class="divider"></div>
+      <p class="section-body">Choose your delivery week and tell me about your little artist. I'll be in touch as soon as possible.</p>
+    </div>
+  </div>
   <div class="container">
-    <span class="section-eyebrow" style="color:var(--rust)">Commission a Piece</span>
-    <h2 class="section-title fade-in">Ready to create <em>something beautiful?</em></h2>
-    <div class="divider"></div>
-    <p class="section-body fade-in" style="margin:0 auto 56px;">Fill in the form below to tell me about your little artist — I'll get back to you as soon as possible.</p>
 
     <div class="availability fade-in" id="availability">
       <h3 class="availability-title">Commission availability</h3>
@@ -1125,12 +1159,26 @@
         </div>
 
         <div class="form-group">
+          <label for="source">How did you find me?</label>
+          <select id="source" name="source">
+            <option value="" disabled selected>Select one</option>
+            <option>Instagram</option>
+            <option>TikTok</option>
+            <option>Etsy</option>
+            <option>Google search</option>
+            <option>Recommended by a friend</option>
+            <option>I've seen one in someone's home</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
           <label for="message">Tell me more about your little artist</label>
           <textarea id="message" name="message" rows="4" placeholder="Their name, age, what kind of artwork they make, any special occasion..."></textarea>
         </div>
 
         <button type="submit" class="form-submit" id="formSubmit">Send Request</button>
-        <p class="form-deposit-note" id="depositNote" hidden>You'll be taken to Tide's secure checkout to pay your 75% deposit. Once it's received, I'll email you my studio address and where to send the artwork. The remaining 25% is due before dispatch.</p>
+        <p class="form-deposit-note" id="depositNote" hidden>You'll be taken to Tide's secure checkout to pay your 75% deposit. Once it's received, I'll email you my studio address and where to send the artwork. The remaining 25% is due before dispatch. By booking you agree to my <a href="terms.html" target="_blank">Terms &amp; Conditions</a>.</p>
         <p class="form-status" id="formStatus" role="status" hidden></p>
 
         <p class="form-note">I aim to respond within 24–48 hours. You can also reach me at <a href="mailto:brooke@littlestgalleries.com">brooke@littlestgalleries.com</a></p>
@@ -1171,7 +1219,7 @@
     <div class="faq-list">
       <div class="faq-item fade-in">
         <div class="faq-q">What kind of artwork can I send?</div>
-        <div class="faq-a">Any artwork your child has created — paintings, drawings, crayon scribbles, watercolours, felt-tip creations, and mixed media all work beautifully. The more varied the pieces, the richer the final collage. I work with 30–60 individual pieces per commission.</div>
+        <div class="faq-a">Any artwork your child has created — paintings, drawings, crayon scribbles, watercolours, felt-tip creations, and mixed media all work beautifully. The more varied the pieces, the richer the final collage. As a guide, send at least 40 pieces for a 24×30, 50 for a 30×40 and 60 for a 36×48.</div>
       </div>
       <div class="faq-item fade-in">
         <div class="faq-q">How do I send the artwork to you?</div>
@@ -1206,7 +1254,7 @@
 </section>
 
 <footer>
-  <p>© 2026 Littlest Galleries · All rights reserved · littlestgalleries.com</p>
+  <p>© 2026 Littlest Galleries · All rights reserved · <a href="terms.html">Terms &amp; Conditions</a> · <a href="privacy.html">Privacy Policy</a></p>
 </footer>
 
 <!-- LIGHTBOX -->
