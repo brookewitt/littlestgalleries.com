@@ -180,8 +180,8 @@
     }
     .hero-art {
       width: 80%;
-      max-width: 460px;
-      aspect-ratio: 3/4;
+      max-width: 360px;
+      aspect-ratio: 9/16;
       background: white;
       box-shadow: 24px 24px 60px rgba(28,24,18,0.15);
       position: relative;
@@ -214,6 +214,7 @@
       transform: rotate(-3deg);
     }
     .hero-slides { position: absolute; inset: 0; overflow: hidden; }
+    .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; background: #2a2622; }
     .hero-slide {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
@@ -965,7 +966,7 @@
       #home { grid-template-columns: 1fr; min-height: auto; }
       .hero-left { padding: 60px 24px 48px; }
       .hero-right { min-height: 380px; padding: 40px 24px; }
-      .hero-art { max-width: 280px; }
+      .hero-art { max-width: 260px; }
 
       .container { padding: 0 24px; }
       section { padding: 72px 0; }
@@ -1005,7 +1006,6 @@
 <nav>
   <a class="nav-logo" href="#home">Littlest Galleries</a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#reviews">Reviews</a></li>
@@ -1021,7 +1021,6 @@
 <div class="mobile-menu">
   <button class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('open')">✕</button>
   <a href="#home" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Home</a>
-  <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('open')">About</a>
   <a href="#pricing" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Pricing</a>
   <a href="#gallery" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Gallery</a>
   <a href="#reviews" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Reviews</a>
@@ -1039,7 +1038,7 @@
     </div>
     <p class="hero-eyebrow">Bespoke Children's Artwork · UK</p>
     <h1 class="hero-title">Your child's art, <em>gallery-worthy</em> forever</h1>
-    <p class="hero-subtitle">I take your little one's drawings, paintings, handprints and handwriting and transform them into a stunning, professionally framed collage — a keepsake they'll treasure for life.</p>
+    <p class="hero-subtitle">I'm Brooke, an American mum of two living in London. I take your little one's drawings, paintings and handprints and hand-collage them into a professionally framed piece, because children's art deserves more than a drawer.</p>
     <div class="hero-buttons">
       <a href="#contact" class="btn-primary">Commission a Piece</a>
       <a href="#pricing" class="btn-ghost">View Pricing</a>
@@ -1052,38 +1051,8 @@
   </div>
   <div class="hero-right fade-in">
     <div class="hero-art">
-      <div class="hero-slides" id="heroSlides">
-        <img class="hero-slide active" src="process-2872.jpg" alt="Frida-inspired children's art collage on an easel in a London garden" style="object-position:50% 45%;" />
-        <img class="hero-slide" src="process-0991.jpg" alt="Two framed sibling collages resting on a garden bench" style="object-position:30% 55%;" loading="lazy" />
-        <img class="hero-slide" src="Raya South London.jpg" alt="Little girl looking up at her bespoke Littlest Galleries framed collage" style="object-position:50% 50%;" loading="lazy" />
-        <img class="hero-slide" src="process-1697.jpg" alt="Holding a finished framed children's art collage in a bright living room" style="object-position:50% 60%;" loading="lazy" />
-      </div>
-      <div class="hero-dots" id="heroDots"><button class="hero-dot active" aria-label="Show photo 1"></button><button class="hero-dot" aria-label="Show photo 2"></button><button class="hero-dot" aria-label="Show photo 3"></button><button class="hero-dot" aria-label="Show photo 4"></button></div>
-      <div class="frame-badge">Gallery Framed</div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="container">
-    <div class="meet-grid">
-      <div class="meet-video fade-in">
-        <video id="introVideo" src="brooke-intro.mp4" poster="brooke-intro-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Brooke introducing Littlest Galleries and making a collage"></video>
-        <button type="button" class="meet-sound" id="introSound" aria-pressed="false">Sound on</button>
-      </div>
-      <div class="meet-content fade-in">
-        <div class="meet-intro">
-        <span class="section-eyebrow">About Me</span>
-        <h2 class="section-title">Hi, I'm <em>Brooke</em></h2>
-        <div class="divider"></div>
-        <p class="about-body">I'm an American mum of two living in London, with a lifelong love of making things. Littlest Galleries was born from a simple belief: children's art deserves more than a drawer.</p>
-        </div>
-        <div class="meet-more">
-        <p class="about-body">Every piece I create is a hand-made collage of your child's own drawings, paintings and handprints, transformed into something gallery-worthy that your family will treasure for a lifetime.</p>
-        <p class="meet-sign">Brooke</p>
-        </div>
-      </div>
+      <video class="hero-video" id="introVideo" src="brooke-intro.mp4" poster="brooke-intro-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Brooke introducing Littlest Galleries and making a collage"></video>
+      <button type="button" class="meet-sound" id="introSound" aria-pressed="false">Sound on</button>
     </div>
   </div>
 </section>
