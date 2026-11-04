@@ -4,13 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Littlest Galleries | Bespoke Children's Artwork Collages | UK</title>
-  <meta name="description" content="Littlest Galleries transforms your child's drawings, paintings and handprints into stunning, professionally framed collage art. Bespoke commissions across the UK. The perfect keepsake gift." />
+  <meta name="description" content="Your child's drawings, paintings and handprints turned into a bespoke framed collage. Handmade in London, delivered across the UK. A keepsake to treasure." />
   <meta name="keywords" content="children's art collage, bespoke kids artwork frame, framed children's drawings UK, turn child's art into wall art, kids artwork gift, personalised children's art, bespoke children's collage commission" />
   <meta property="og:title" content="Littlest Galleries | Bespoke Children's Artwork Collages" />
   <meta property="og:description" content="Your child's art, professionally collaged and gallery-framed. A keepsake they'll treasure forever." />
   <meta property="og:url" content="https://www.littlestgalleries.com" />
   <meta property="og:type" content="website" />
   <link rel="canonical" href="https://www.littlestgalleries.com/" />
+  <meta property="og:image" content="https://www.littlestgalleries.com/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="A colourful collage of children's paintings and drawings, including a Frida-inspired portrait" />
+  <meta property="og:site_name" content="Littlest Galleries" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Littlest Galleries", "url": "https://www.littlestgalleries.com/", "logo": "https://www.littlestgalleries.com/apple-touch-icon.png", "image": "https://www.littlestgalleries.com/og-image.jpg", "description": "Bespoke collages made from children's drawings, paintings and handprints, framed and delivered across the UK.", "email": "brooke@littlestgalleries.com", "founder": {"@type": "Person", "name": "Brooke"}, "address": {"@type": "PostalAddress", "addressLocality": "London", "addressCountry": "GB"}, "areaServed": {"@type": "Country", "name": "United Kingdom"}, "sameAs": ["https://www.instagram.com/thelittlestgalleries", "https://www.tiktok.com/@littlestgalleries"]}</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -117,6 +128,7 @@
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--sage);
+      font-weight: 400;
       margin-bottom: 28px;
     }
     .hero-title {
@@ -383,7 +395,8 @@
       font-weight: 400;
       margin-bottom: 8px;
     }
-    .price-box-units {
+    .price-box-title::after { content: attr(data-units); }
+    .price-box-units, .price-box-title::after {
       font-family: 'DM Sans', sans-serif;
       font-size: 12px;
       letter-spacing: 0.12em;
@@ -1038,8 +1051,8 @@
       <p class="hero-quote-text">&ldquo;The <em>best thing</em> I ever ordered on Etsy!&rdquo;</p>
       <p class="hero-quote-author"><span class="review-stars">★★★★★</span>Valentina, verified Etsy buyer</p>
     </div>
-    <p class="hero-eyebrow">Bespoke Children's Artwork · UK</p>
-    <h1 class="hero-title">Your child's art, <em>gallery-worthy</em> forever</h1>
+    <h1 class="hero-eyebrow">Children's Art Collages · UK</h1>
+    <p class="hero-title">Your child's art, <em>gallery-worthy</em> forever</p>
     <p class="hero-subtitle">Hi, I'm Brooke! I'm an American living in London and have two little girls who light up my world. I couldn't bear to throw away their artwork, so I started turning these beautiful piles into collages. Now I make them for families everywhere: your child's own drawings, paintings and handprints, made by hand into a framed keepsake you'll treasure for life.</p>
     <div class="hero-buttons">
       <a href="#contact" class="btn-primary">Commission a Piece</a>
@@ -1069,7 +1082,7 @@
     <div class="divider"></div>
 
     <div class="price-box">
-      <h3 class="price-box-title">Collage Pricing <span class="price-box-units">GBP · inches</span></h3>
+      <h3 class="price-box-title" data-units="GBP · inches">Collage Pricing</h3>
       <p class="price-box-included">✓ Light oak gallery frame &nbsp;✓ Insured UK delivery &nbsp;✓ Unused art returned</p>
       <ul class="price-list">
         <li class="price-row"><span class="price-size">24×30<span class="price-pieces">40+ pieces of art</span></span><span class="price-dash"></span><span class="price-framed">£750</span><span class="price-unframed">unframed £445</span></li>
@@ -1089,39 +1102,39 @@
       <div class="divider"></div>
     <div class="gallery-grid">
       <div class="gallery-card">
-        <img loading="lazy" src="gallery-frida-36x48.jpg" alt="Frida-inspired children's art collage in a light oak frame on an easel in a London garden" />
+        <img width="900" height="1200" loading="lazy" src="gallery-frida-36x48.jpg" alt="Frida-inspired children's art collage in a light oak frame on an easel in a London garden" />
         <p class="gallery-label">36×48 · Paintings &amp; portraits</p>
       </div>
       <div class="gallery-card">
-        <img loading="lazy" src="gallery-red-daffodil-indoor.jpg" alt="Textured children's art collage with handprints, tissue paper and a paper-plate daffodil" />
+        <img width="900" height="1200" loading="lazy" src="gallery-red-daffodil-indoor.jpg" alt="Textured children's art collage with handprints, tissue paper and a paper-plate daffodil" />
         <p class="gallery-label">30×40 · Handprints &amp; textures</p>
       </div>
       <div class="gallery-card">
-        <img loading="lazy" src="gallery-rabbit-lighthouse.jpg" alt="Framed children's art collage featuring a rabbit, pumpkin and lighthouse" />
+        <img width="900" height="1200" loading="lazy" src="gallery-rabbit-lighthouse.jpg" alt="Framed children's art collage featuring a rabbit, pumpkin and lighthouse" />
         <p class="gallery-label">30×40 · Drawings &amp; paintings</p>
       </div>
       <div class="gallery-card">
-        <img loading="lazy" src="gallery-sibling-pair.jpg" alt="Two matching framed sibling collages resting on a garden bench" />
+        <img width="900" height="1200" loading="lazy" src="gallery-sibling-pair.jpg" alt="Two matching framed sibling collages resting on a garden bench" />
         <p class="gallery-label">24×30 · Sibling pair</p>
       </div>
       <div class="gallery-card">
-        <img loading="lazy" src="gallery-tall-portrait.jpg" alt="Tall framed children's art collage with self-portraits, standing in a sunny garden" />
+        <img width="900" height="1200" loading="lazy" src="gallery-tall-portrait.jpg" alt="Tall framed children's art collage with self-portraits, standing in a sunny garden" />
         <p class="gallery-label">30×40 · Portraits &amp; colour</p>
       </div>
       <div class="gallery-card">
-        <img loading="lazy" src="gallery-red-daffodil-garden.jpg" alt="Mixed media children's collage with tissue paper and paper-plate flowers on an easel outdoors" />
+        <img width="900" height="1200" loading="lazy" src="gallery-red-daffodil-garden.jpg" alt="Mixed media children's collage with tissue paper and paper-plate flowers on an easel outdoors" />
         <p class="gallery-label">30×40 · Mixed media</p>
       </div>
       <div class="gallery-card">
-        <img loading="lazy" src="gallery-millie-mackintosh.jpg" alt="Millie Mackintosh holding her Littlest Galleries collage commission in a bright living room" />
+        <img width="900" height="1200" loading="lazy" src="gallery-millie-mackintosh.jpg" alt="Millie Mackintosh holding her Littlest Galleries collage commission in a bright living room" />
         <p class="gallery-label">Commission for Millie Mackintosh</p>
       </div>
       <div class="gallery-card">
-        <img loading="lazy" src="gallery-sunlit-30x40.jpg" alt="Framed children's art collage with a penguin, turtle and rainbow in afternoon sunlight" />
+        <img width="900" height="1200" loading="lazy" src="gallery-sunlit-30x40.jpg" alt="Framed children's art collage with a penguin, turtle and rainbow in afternoon sunlight" />
         <p class="gallery-label">30×40 · Drawings &amp; colour</p>
       </div>
       <div class="gallery-card">
-        <img loading="lazy" src="gallery-behind-the-scenes.jpg" alt="Brooke sealing a children's art collage with a wide paintbrush" />
+        <img width="900" height="1200" loading="lazy" src="gallery-behind-the-scenes.jpg" alt="Brooke sealing a children's art collage with a wide paintbrush" />
         <p class="gallery-label">Behind the scenes · Sealing a collage</p>
       </div>
     </div>
@@ -1190,17 +1203,17 @@
 
     <div class="steps-grid">
       <div class="step fade-in">
-        <img class="step-photo" src="process-2330.jpg" alt="Sorting through a pile of children's artwork for a Littlest Galleries collage" style="object-position: 50% 70%;" />
+        <img width="1200" height="1600" class="step-photo" src="process-2330.jpg" alt="Sorting through a pile of children's artwork for a Littlest Galleries collage" style="object-position: 50% 70%;" />
         <h3 class="step-title">1. Gather &amp; Send</h3>
         <p class="step-body">Collect your child's drawings, paintings and handprints and post them to my London studio. I'll include as many pieces as I can and return any I don't use.</p>
       </div>
       <div class="step fade-in">
-        <img class="step-photo" src="process-1687.jpg" alt="Close-up of a hand-collaged children's artwork piece" />
+        <img width="1029" height="1600" class="step-photo" src="process-1687.jpg" alt="Close-up of a hand-collaged children's artwork piece" />
         <h3 class="step-title">2. Design &amp; Create</h3>
         <p class="step-body">I hand-compose and collage your piece, picking out the most wonderful moments. No two are ever the same.</p>
       </div>
       <div class="step fade-in">
-        <img class="step-photo" src="process-2578.jpg" alt="Finished Littlest Galleries collage in a light oak frame on an easel" style="object-position: 50% 30%;" />
+        <img width="1200" height="1600" class="step-photo" src="process-2578.jpg" alt="Finished Littlest Galleries collage in a light oak frame on an easel" style="object-position: 50% 30%;" />
         <h3 class="step-title">3. Delivered &amp; Displayed</h3>
         <p class="step-body">Your piece arrives professionally framed in light oak, ready to hang and treasure for years to come.</p>
       </div>
