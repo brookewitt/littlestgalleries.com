@@ -1086,6 +1086,7 @@
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#faq">FAQ</a></li>
+    <li><a href="gift-vouchers.html">Gift Vouchers</a></li>
     <li><a href="#contact" class="nav-cta">Commission a Piece</a></li>
   </ul>
   <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">
@@ -1101,13 +1102,14 @@
   <a href="#reviews" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Reviews</a>
   <a href="#how-it-works" onclick="document.querySelector('.mobile-menu').classList.remove('open')">How It Works</a>
   <a href="#faq" onclick="document.querySelector('.mobile-menu').classList.remove('open')">FAQ</a>
+  <a href="gift-vouchers.html">Gift Vouchers</a>
   <a href="#contact" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Commission a Piece</a>
 </div>
 
 <!-- HERO -->
 <section id="home">
   <div class="hero-left fade-in">
-    <a href="#voucher" class="xmas-pill">Christmas is fully booked · <strong>Gift vouchers available</strong> &rarr;</a>
+    <a href="gift-vouchers.html" class="xmas-pill">Christmas is fully booked · <strong>Gift vouchers available</strong> &rarr;</a>
     <div class="hero-quote">
       <p class="hero-quote-text">&ldquo;The <em>best thing</em> I ever ordered on Etsy!&rdquo;</p>
       <p class="hero-quote-author"><span class="review-stars">★★★★★</span>Valentina, verified Etsy buyer</p>
@@ -1298,7 +1300,7 @@
       <div>
         <span class="section-eyebrow" style="color:var(--rust);margin-bottom:10px;">Christmas gift voucher</span>
         <h3 class="voucher-title">Missed the Christmas spots? <em>Give a voucher.</em></h3>
-        <p class="voucher-body">A beautiful card to put under the tree, with the collage made in the new year from the artwork they choose. Pick &ldquo;Christmas gift voucher&rdquo; in the form below and I'll send you the details.</p>
+        <p class="voucher-body">A beautiful card to put under the tree, with the collage made in the new year from the artwork they choose. Pick &ldquo;Christmas gift voucher&rdquo; in the form below and I'll send you the details. <a href="gift-vouchers.html" style="color:var(--rust);">More about gift vouchers</a></p>
       </div>
       <button type="button" class="btn-primary voucher-btn" id="voucherBtn">Choose a gift voucher</button>
     </div>
@@ -1436,7 +1438,7 @@
 </section>
 
 <footer>
-  <p>© 2026 Littlest Galleries · All rights reserved · <a href="terms.html">Terms &amp; Conditions</a> · <a href="privacy.html">Privacy Policy</a> · <a href="#" data-cookie-settings>Cookie settings</a></p>
+  <p>© 2026 Littlest Galleries · All rights reserved · <a href="gift-vouchers.html">Gift Vouchers</a> · <a href="terms.html">Terms &amp; Conditions</a> · <a href="privacy.html">Privacy Policy</a> · <a href="#" data-cookie-settings>Cookie settings</a></p>
 </footer>
 
 <!-- LIGHTBOX -->
@@ -1657,6 +1659,7 @@
       const ok = await send();
       status.hidden = false;
       if (ok) {
+        (window.lgTrack||function(){})('generate_lead', { lead_type: payField.value, size: size.value || 'not chosen', delivery_week: week.value });
         form.querySelectorAll('.form-group, .form-row, #formSubmit, .form-note, #bookNow, #depositNote').forEach(el => el.style.display = 'none');
         status.innerHTML = 'Thank you! Your message has been sent. I aim to reply within 24–48 hours.';
       } else {
@@ -1676,6 +1679,7 @@
         return;
       }
       payField.value = 'Sent to Tide checkout for ' + d.deposit + ' deposit';
+      (window.lgTrack||function(){})('begin_checkout', { currency: 'GBP', value: parseFloat(d.deposit.replace(/[^0-9.]/g, '')), size: size.value, delivery_week: week.value });
       depBtn.disabled = true; depBtn.textContent = 'Taking you to checkout…';
       await send();
       window.location.href = d.url;
@@ -1683,6 +1687,7 @@
 
     // "Choose a gift voucher" buttons
     document.querySelectorAll('#voucherBtn').forEach(b => b.addEventListener('click', () => {
+      (window.lgTrack||function(){})('voucher_click', { location: 'commission section' });
       week.value = 'Christmas gift voucher';
       week.dispatchEvent(new Event('change'));
       form.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1778,5 +1783,58 @@
   })();
 </script>
 
+<script>
+  // ── Analytics events (only sent if the visitor accepted cookies) ──
+  window.lgTrack = function (name, params) {
+    if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+  };
+  (function () {
+    const track = window.lgTrack;
+    // Which sections people actually reach
+    const seen = {};
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        const id = e.target.id;
+        if (e.isIntersecting && !seen[id]) { seen[id] = true; track('section_view', { section: id }); }
+      });
+    }, { threshold: 0.35 });
+    ['pricing', 'reviews', 'how-it-works', 'faq', 'contact', 'voucher'].forEach(id => {
+      const el = document.getElementById(id); if (el) io.observe(el);
+    });
+    // Button and link clicks
+    document.addEventListener('click', e => {
+      const a = e.target.closest('a, button');
+      if (!a) return;
+      const text = (a.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 60);
+      const href = a.getAttribute('href') || '';
+      const where = a.closest('nav, .mobile-menu') ? 'menu' : a.closest('#home') ? 'top of page' : a.closest('#pricing') ? 'pricing' : 'page';
+      if (href === '#contact' || href === '#pricing' || href === '#voucher' || href.endsWith('gift-vouchers.html')) {
+        track('cta_click', { label: text, target: href, location: where });
+      } else if (/instagram|tiktok|etsy/i.test(href)) {
+        track('social_click', { network: (href.match(/instagram|tiktok|etsy/i) || [''])[0].toLowerCase(), location: where });
+      } else if (href.startsWith('mailto:')) {
+        track('email_click', { location: where });
+      } else if (a.id === 'introSound') {
+        track('video_sound', { state: a.getAttribute('aria-pressed') === 'true' ? 'off' : 'on' });
+      }
+    }, true);
+    // FAQ questions opened
+    document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () => {
+      track('faq_open', { question: q.textContent.trim().slice(0, 100) });
+    }));
+    // Gallery photos opened
+    document.querySelectorAll('#gallery .gallery-card').forEach(c => c.addEventListener('click', () => {
+      track('gallery_open', { photo: (c.querySelector('.gallery-label') || {}).textContent || '' });
+    }));
+    // Started filling in the form
+    const form = document.getElementById('commissionForm');
+    if (form) {
+      let started = false;
+      form.addEventListener('focusin', () => { if (!started) { started = true; track('form_start', {}); } });
+      const size = document.getElementById('size');
+      if (size) size.addEventListener('change', () => track('size_selected', { size: size.value }));
+    }
+  })();
+</script>
 </body>
 </html>
