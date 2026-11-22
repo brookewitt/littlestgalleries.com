@@ -802,6 +802,7 @@
     .week-tile.sold-out { cursor: default; opacity: 0.45; }
     .week-tile.sold-out:hover { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); }
     .week-tile.sold-out .week-status { color: rgba(255,255,255,0.7); }
+    .field-hint { font-size: 12px; color: var(--mid); font-weight: 300; margin-top: 2px; }
     .availability-key { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 16px; font-weight: 300; }
     @media (max-width: 900px) {
       .week-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
@@ -1302,13 +1303,6 @@
       <button type="button" class="btn-primary voucher-btn" id="voucherBtn">Choose a gift voucher</button>
     </div>
 
-    <div class="availability fade-in" id="availability">
-      <h3 class="availability-title">Commission availability</h3>
-      <p class="availability-sub">Each commission is booked into a delivery week. Pick an open week below or in the form.</p>
-      <div class="week-grid" id="weekGrid"></div>
-      <p class="availability-key">I take on just two commissions a week, so every piece gets my full attention. Spots go on a first come, first served basis.</p>
-    </div>
-
     <div class="contact-form-wrap fade-in">
       <form action="https://formspree.io/f/mkoejjpk" method="POST" class="contact-form" id="commissionForm">
         <input type="hidden" name="payment" id="paymentField" value="Enquiry only" />
@@ -1351,6 +1345,7 @@
             <option value="Week of 14 Dec 2026" disabled>14–18 Dec (Christmas, sold out)</option>
             <option value="Week of 18 Jan 2027">18–22 Jan onwards</option>
           </select>
+          <p class="field-hint">I take on just two commissions a week, so every piece gets my full attention.</p>
         </div>
 
         <div class="form-group">
@@ -1418,7 +1413,7 @@
       </div>
       <div class="faq-item fade-in">
         <div class="faq-q">How long does it take?</div>
-        <div class="faq-a">Each commission is booked into a delivery week. You can see which weeks are open in the availability calendar in the Commission a Piece section and choose one when you enquire. Please post your artwork so it reaches me at least 2 weeks before your delivery week. Delivery across the UK is fully insured and included in the price.</div>
+        <div class="faq-a">Each commission is booked into a delivery week. You can see which weeks are open in the delivery week list on the commission form, or simply choose "Not sure yet" and I'll suggest the earliest available week. Please post your artwork so it reaches me at least 2 weeks before your delivery week. Delivery across the UK is fully insured and included in the price.</div>
       </div>
       <div class="faq-item fade-in">
         <div class="faq-q">What sizes are available and what do they cost?</div>
@@ -1582,7 +1577,7 @@
 
     const select = document.getElementById('delivery_week');
     const grid = document.getElementById('weekGrid');
-    if (!select || !grid) return;
+    if (!select) return;
 
     select.innerHTML = '<option value="Not sure yet" selected>Not sure yet / earliest available</option>' +
       '<option value="Christmas gift voucher">Christmas gift voucher (made in the new year)</option>';
@@ -1594,6 +1589,7 @@
       select.appendChild(o);
     });
 
+    if (!grid) return;
     weeks.forEach(w => {
       const t = document.createElement(w.spots > 0 ? 'button' : 'div');
       t.className = 'week-tile' + (w.spots <= 0 ? ' sold-out' : '');
@@ -1675,7 +1671,7 @@
       if (!d || !form.reportValidity()) return;
       if (!week.value.startsWith('Week of')) {
         status.hidden = false;
-        status.innerHTML = 'To book now, please choose an open delivery week in the form (or in the calendar above).';
+        status.innerHTML = 'To book now, please choose an open delivery week in the form.';
         week.focus();
         return;
       }
