@@ -742,6 +742,10 @@
     .voucher-title { font-family: 'Fraunces', Georgia, serif; font-size: 26px; font-weight: 400; line-height: 1.25; margin-bottom: 10px; color: var(--ink); }
     .voucher-title em { font-style: italic; color: var(--rust); }
     .voucher-body { font-size: 15px; font-weight: 300; color: var(--mid); line-height: 1.7; }
+    .voucher-card { position: relative; transition: box-shadow 0.2s, border-color 0.2s; }
+    .voucher-card:hover { box-shadow: 0 10px 30px rgba(28,24,18,0.08); border-color: rgba(184,76,42,0.55); }
+    .voucher-link::after { content: ''; position: absolute; inset: 0; }
+    .voucher-link:hover, .voucher-card:hover .voucher-link { transform: none; background: var(--rust-light); }
     .voucher-btn { border: none; cursor: pointer; white-space: nowrap; font-family: 'DM Sans', sans-serif; }
     @media (max-width: 700px) {
       .voucher-card { flex-direction: column; align-items: stretch; padding: 26px 22px; gap: 20px; }
@@ -1300,9 +1304,9 @@
       <div>
         <span class="section-eyebrow" style="color:var(--rust);margin-bottom:10px;">Christmas gift voucher</span>
         <h3 class="voucher-title">Missed the Christmas spots? <em>Give a voucher.</em></h3>
-        <p class="voucher-body">A beautiful card to put under the tree, with the collage made in the new year from the artwork they choose. Pick &ldquo;Christmas gift voucher&rdquo; in the form below and I'll send you the details. <a href="gift-vouchers.html" style="color:var(--rust);">More about gift vouchers</a></p>
+        <p class="voucher-body">A beautiful card to put under the tree, with the collage made in the new year from the artwork they choose.</p>
       </div>
-      <button type="button" class="btn-primary voucher-btn" id="voucherBtn">Choose a gift voucher</button>
+      <a href="gift-vouchers.html" class="btn-primary voucher-btn voucher-link">See gift vouchers &rarr;</a>
     </div>
 
     <div class="contact-form-wrap fade-in">
@@ -1685,14 +1689,6 @@
       window.location.href = d.url;
     });
 
-    // "Choose a gift voucher" buttons
-    document.querySelectorAll('#voucherBtn').forEach(b => b.addEventListener('click', () => {
-      (window.lgTrack||function(){})('voucher_click', { location: 'commission section' });
-      week.value = 'Christmas gift voucher';
-      week.dispatchEvent(new Event('change'));
-      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setTimeout(() => document.getElementById('firstname').focus({ preventScroll: true }), 600);
-    }));
   })();
   // ── Gallery lightbox ──
   (function () {
