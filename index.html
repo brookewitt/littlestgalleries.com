@@ -708,6 +708,65 @@
     }
     .social-link:hover { color: white; }
 
+    /* ── CHRISTMAS VOUCHER ── */
+    .xmas-pill {
+      align-self: flex-start;
+      display: inline-block;
+      background: rgba(184,76,42,0.1);
+      color: var(--rust);
+      border: 1px solid rgba(184,76,42,0.25);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 13px;
+      text-decoration: none;
+      margin-bottom: 28px;
+      transition: background 0.2s;
+    }
+    .xmas-pill:hover { background: rgba(184,76,42,0.18); }
+    .xmas-pill strong { font-weight: 500; }
+    .voucher-card {
+      max-width: 880px;
+      margin: 0 auto 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      background: #fffdf9;
+      border: 1px solid rgba(184,76,42,0.3);
+      border-left: 4px solid var(--rust);
+      border-radius: 6px;
+      padding: 32px 36px;
+      text-align: left;
+      scroll-margin-top: 100px;
+    }
+    .voucher-title { font-family: 'Fraunces', Georgia, serif; font-size: 26px; font-weight: 400; line-height: 1.25; margin-bottom: 10px; color: var(--ink); }
+    .voucher-title em { font-style: italic; color: var(--rust); }
+    .voucher-body { font-size: 15px; font-weight: 300; color: var(--mid); line-height: 1.7; }
+    .voucher-btn { border: none; cursor: pointer; white-space: nowrap; font-family: 'DM Sans', sans-serif; }
+    @media (max-width: 700px) {
+      .voucher-card { flex-direction: column; align-items: stretch; padding: 26px 22px; gap: 20px; }
+      .voucher-btn { text-align: center; }
+    }
+    .book-now { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: -4px; }
+    .book-now[hidden] { display: none; }
+    .book-now-or { font-size: 13px; color: var(--mid); }
+    .book-now-btn {
+      background: transparent;
+      border: 1px solid var(--rust);
+      color: var(--rust);
+      padding: 12px 22px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .book-now-btn:hover { background: var(--rust); color: white; }
+    .book-now-btn:disabled { opacity: 0.6; cursor: wait; }
+
     /* ── AVAILABILITY ── */
     .availability { max-width: 880px; margin: 0 auto 56px; }
     .availability-title {
@@ -1047,6 +1106,7 @@
 <!-- HERO -->
 <section id="home">
   <div class="hero-left fade-in">
+    <a href="#voucher" class="xmas-pill">Christmas is fully booked · <strong>Gift vouchers available</strong> &rarr;</a>
     <div class="hero-quote">
       <p class="hero-quote-text">&ldquo;The <em>best thing</em> I ever ordered on Etsy!&rdquo;</p>
       <p class="hero-quote-author"><span class="review-stars">★★★★★</span>Valentina, verified Etsy buyer</p>
@@ -1228,10 +1288,19 @@
       <span class="section-eyebrow" style="color:var(--rust)">Commission a Piece</span>
       <h2 class="section-title">Ready to create <em>something beautiful?</em></h2>
       <div class="divider"></div>
-      <p class="section-body">Choose your delivery week and tell me about your little artist. I'll be in touch as soon as possible.</p>
+      <p class="section-body">Have a question, or ready to book? Tell me about your little artist and I'll be in touch within 24–48 hours. No payment needed to enquire.</p>
     </div>
   </div>
   <div class="container">
+
+    <div class="voucher-card fade-in" id="voucher">
+      <div>
+        <span class="section-eyebrow" style="color:var(--rust);margin-bottom:10px;">Christmas gift voucher</span>
+        <h3 class="voucher-title">Missed the Christmas spots? <em>Give a voucher.</em></h3>
+        <p class="voucher-body">A beautiful card to put under the tree, with the collage made in the new year from the artwork they choose. Pick &ldquo;Christmas gift voucher&rdquo; in the form below and I'll send you the details.</p>
+      </div>
+      <button type="button" class="btn-primary voucher-btn" id="voucherBtn">Choose a gift voucher</button>
+    </div>
 
     <div class="availability fade-in" id="availability">
       <h3 class="availability-title">Commission availability</h3>
@@ -1275,12 +1344,12 @@
         </div>
 
         <div class="form-group">
-          <label for="delivery_week">When would you like it delivered? *</label>
-          <select id="delivery_week" name="delivery_week" required>
-            <option value="" disabled selected>Select a delivery week</option>
-            <option value="Week of 14 Dec 2026">14–18 Dec (Christmas, 1 spot left)</option>
+          <label for="delivery_week">When would you like it delivered? <span style="opacity:.6">(optional)</span></label>
+          <select id="delivery_week" name="delivery_week">
+            <option value="Not sure yet" selected>Not sure yet / earliest available</option>
+            <option value="Christmas gift voucher">Christmas gift voucher (made in the new year)</option>
+            <option value="Week of 14 Dec 2026" disabled>14–18 Dec (Christmas, sold out)</option>
             <option value="Week of 18 Jan 2027">18–22 Jan onwards</option>
-            <option value="Flexible">I'm flexible: any open week</option>
           </select>
         </div>
 
@@ -1304,6 +1373,10 @@
         </div>
 
         <button type="submit" class="form-submit" id="formSubmit">Send Request</button>
+        <div class="book-now" id="bookNow" hidden>
+          <span class="book-now-or">Already decided?</span>
+          <button type="button" class="book-now-btn" id="depositBtn">Book now &amp; pay deposit</button>
+        </div>
         <p class="form-deposit-note" id="depositNote" hidden>You'll be taken to Tide's secure checkout to pay your 75% deposit. Once it's received, I'll email you my studio address and where to send the artwork. The remaining 25% is due before dispatch. By booking you agree to my <a href="terms.html" target="_blank">Terms &amp; Conditions</a>.</p>
         <p class="form-status" id="formStatus" role="status" hidden></p>
 
@@ -1474,13 +1547,13 @@
       '2026-11-23': 0,
       '2026-11-30': 0,
       '2026-12-07': 0,
-      '2026-12-14': 1,
+      '2026-12-14': 0,
       '2026-12-21': 0,
       '2026-12-28': 0,
       '2027-01-04': 0,
       '2027-01-11': 0
     },
-    notes: { '2026-12-14': 'In time for Christmas' }
+    notes: { '2026-12-14': 'Christmas week' }
   };
   (function () {
     const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -1511,7 +1584,8 @@
     const grid = document.getElementById('weekGrid');
     if (!select || !grid) return;
 
-    select.innerHTML = '<option value="" disabled selected>Select a delivery week</option>';
+    select.innerHTML = '<option value="Not sure yet" selected>Not sure yet / earliest available</option>' +
+      '<option value="Christmas gift voucher">Christmas gift voucher (made in the new year)</option>';
     weeks.forEach(w => {
       const o = document.createElement('option');
       o.value = w.value;
@@ -1519,9 +1593,6 @@
       if (w.spots <= 0) o.disabled = true;
       select.appendChild(o);
     });
-    const flex = document.createElement('option');
-    flex.value = 'Flexible'; flex.textContent = "I'm flexible: any open week";
-    select.appendChild(flex);
 
     weeks.forEach(w => {
       const t = document.createElement(w.spots > 0 ? 'button' : 'div');
@@ -1555,40 +1626,72 @@
     const form = document.getElementById('commissionForm');
     if (!form) return;
     const size = document.getElementById('size');
+    const week = document.getElementById('delivery_week');
     const btn = document.getElementById('formSubmit');
+    const bookNow = document.getElementById('bookNow');
+    const depBtn = document.getElementById('depositBtn');
     const note = document.getElementById('depositNote');
     const status = document.getElementById('formStatus');
     const payField = document.getElementById('paymentField');
     const linkFor = () => { const d = DEPOSIT_LINKS[size.value]; return d && d.url ? d : null; };
+    const isVoucher = () => week.value === 'Christmas gift voucher';
     const update = () => {
       const d = linkFor();
-      btn.textContent = d ? 'Book & pay ' + d.deposit + ' deposit' : 'Send Request';
-      note.hidden = !d;
-      payField.value = d ? 'Sent to Tide checkout for ' + d.deposit + ' deposit' : 'Enquiry only';
+      const show = !!d && !isVoucher();
+      bookNow.hidden = !show;
+      note.hidden = !show;
+      if (d) depBtn.textContent = 'Book now & pay ' + d.deposit + ' deposit';
     };
     size.addEventListener('change', update);
+    week.addEventListener('change', update);
     update();
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const d = linkFor();
-      btn.disabled = true;
-      btn.textContent = d ? 'Taking you to checkout…' : 'Sending…';
-      let ok = false;
+    const send = async () => {
       try {
         const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
-        ok = res.ok;
-      } catch (err) { ok = false; }
-      if (d) { window.location.href = d.url; return; }
+        return res.ok;
+      } catch (err) { return false; }
+    };
+
+    // Main button: a free enquiry, no payment
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      payField.value = isVoucher() ? 'Gift voucher enquiry' : 'Enquiry only';
+      btn.disabled = true; btn.textContent = 'Sending…';
+      const ok = await send();
       status.hidden = false;
       if (ok) {
-        form.querySelectorAll('.form-group, .form-row, #formSubmit, .form-note').forEach(el => el.style.display = 'none');
-        status.innerHTML = 'Thank you! Your request has been sent. I aim to reply within 24–48 hours.';
+        form.querySelectorAll('.form-group, .form-row, #formSubmit, .form-note, #bookNow, #depositNote').forEach(el => el.style.display = 'none');
+        status.innerHTML = 'Thank you! Your message has been sent. I aim to reply within 24–48 hours.';
       } else {
-        btn.disabled = false; update();
+        btn.disabled = false; btn.textContent = 'Send Request';
         status.innerHTML = 'Sorry, something went wrong sending your request. Please try again or email <a href="mailto:brooke@littlestgalleries.com">brooke@littlestgalleries.com</a>.';
       }
     });
+
+    // Secondary button: book a week and pay the deposit on Tide
+    depBtn.addEventListener('click', async () => {
+      const d = linkFor();
+      if (!d || !form.reportValidity()) return;
+      if (!week.value.startsWith('Week of')) {
+        status.hidden = false;
+        status.innerHTML = 'To book now, please choose an open delivery week in the form (or in the calendar above).';
+        week.focus();
+        return;
+      }
+      payField.value = 'Sent to Tide checkout for ' + d.deposit + ' deposit';
+      depBtn.disabled = true; depBtn.textContent = 'Taking you to checkout…';
+      await send();
+      window.location.href = d.url;
+    });
+
+    // "Choose a gift voucher" buttons
+    document.querySelectorAll('#voucherBtn').forEach(b => b.addEventListener('click', () => {
+      week.value = 'Christmas gift voucher';
+      week.dispatchEvent(new Event('change'));
+      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => document.getElementById('firstname').focus({ preventScroll: true }), 600);
+    }));
   })();
   // ── Gallery lightbox ──
   (function () {
